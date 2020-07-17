@@ -54,8 +54,9 @@ public class MainActivity extends AppCompatActivity {
         TextView name = findViewById(R.id.dbtest);
         Remote connection = new Remote();
         HashMap<String, String> user = new HashMap<String, String>();
-        user.put("Abraham", "q1w2e3");
-        String result = Remote.sendDataPostMethod("http://192.249.19.242:6122/signin", user);
+        user.put("name", "Abraham");
+        user.put("password", "q1w2e3");
+        String result = Remote.sendDataPostMethod("http://192.249.19.242:8080/api", user);
         name.setText(result);
 
 

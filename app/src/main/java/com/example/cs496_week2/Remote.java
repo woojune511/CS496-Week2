@@ -48,7 +48,7 @@ public class Remote{
         try{
             URL url = new URL(address);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestMethod("GET");
+            conn.setRequestMethod("POST");
 
             String tmp = "";
             for (Object key: postdata.keySet()){
@@ -57,6 +57,7 @@ public class Remote{
             }
 
             tmp = tmp.substring(1);
+            Log.d(tmp, tmp);
             conn.setDoOutput(true);
             OutputStream os = conn.getOutputStream();
             os.write(tmp.getBytes());
