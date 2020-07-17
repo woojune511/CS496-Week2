@@ -63,7 +63,7 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client)=>{
                 'salt': salt,
                 'name': name
             };
-            var db = clinet.db('test');
+            var db = client.db('test');
 
             db.collection('user')
                 .find({'email': email}).count((err, num)=>{
@@ -87,7 +87,7 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client)=>{
             var email = post_data.email;
             var userPassword = post_data.password;
 
-            var db = clinet.db('test');
+            var db = client.db('test');
 
             db.collection('user')
                 .find({'email': email}).count((err, num)=>{
