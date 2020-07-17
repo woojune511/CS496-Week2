@@ -9,6 +9,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -16,6 +17,13 @@ import android.widget.Toast;
 
 import com.facebook.login.LoginManager;
 import com.google.android.material.tabs.TabLayout;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.nio.Buffer;
+import java.util.Map;
 
 import static android.widget.Toast.LENGTH_LONG;
 
@@ -41,6 +49,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         TextView textView = findViewById(R.id.txtv);
+
+
+
+
 
 //        mTabLayout = (TabLayout) findViewById(R.id.tabLayout);
 //
