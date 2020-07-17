@@ -3,16 +3,19 @@ const mongoose = require('mongoose');
 // Define Schemes
 const gallerySchema = new mongoose.Schema({
   name: { type: String, required: true, unique: true },
+  modified_date: {type: Date, default: Date.now}
 },
 {
   timestamps: true
 });
 
-const Picture = mongoose.model('Picture', gallerySchema);
+var Picture = mongoose.model('picture', gallerySchema);
 
-const picture = new Picture({
+var picture = new Picture({
     "name": "testentry"
 });
+
+
 
 // Create new todo document
 gallerySchema.statics.create = function (payload) {
@@ -47,4 +50,4 @@ gallerySchema.statics.create = function (payload) {
 
 
 // Create Model & Export
-module.exports = Picture;
+module.exports = mongoose.model('picture', gallerySchema);

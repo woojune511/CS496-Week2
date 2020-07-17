@@ -1,27 +1,37 @@
-// ENV
-require('dotenv').config();
-// DEPENDENCIES
-const express = require('express');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
+// app.js
 
-const app = express();
-const port = process.env.PORT || 6122;
+// [LOAD PACKAGES]
+var express     = require('express');
+var app         = express();
+var bodyParser  = require('body-parser');
+var mongoose    = require('mongoose');
 
-// Static File Service
-app.use(express.static('public'));
-// Body-parser
+// [CONFIGURE APP TO USE bodyParser]
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// Node.js의 native Promise 사용
-mongoose.Promise = global.Promise;
+// [CONFIGURE SERVER PORT]
+var port = process.env.PORT || 8080;
+
+// [CONFIGURE ROUTER]
+var router = require('./routes')(app, Picture);
+
+// [ CONFIGURE mongoose ]
 
 // CONNECT TO MONGODB SERVER
-mongoose.connect(process.env.MONGO_URI, { useMongoClient: true })
-  .then(() => console.log('Successfully connected to mongodb'))
-  .catch(e => console.error(e));
+var db = mongoose.connection;
+db.on('error', console.error);
+db.once('open', function(){
+    // CONNECTED TO MONGODB SERVER
+    console.log("Connected to mongod server");
+});
 
-app.use('/pictures', require('./routes/pictures'));
+mongoose.connect('mongodb://localhost:27017/test');
 
-app.listen(port, () => console.log(`Server listening on port ${port}`));
+// DEFINE MODEL
+var Picture = require('./models/picture');
+
+// [RUN SERVER]
+var server = app.listen(port, function(){
+ console.log("Express server has started on port " + port)
+});
