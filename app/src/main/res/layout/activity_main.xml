@@ -44,4 +44,14 @@
         android:id="@+id/txtv"
         />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Main Activity"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:textSize="14pt"
+        android:id="@+id/dbtest"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

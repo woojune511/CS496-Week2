@@ -23,6 +23,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.Buffer;
+import java.util.HashMap;
 import java.util.Map;
 
 import static android.widget.Toast.LENGTH_LONG;
@@ -50,7 +51,11 @@ public class MainActivity extends AppCompatActivity {
 
         TextView textView = findViewById(R.id.txtv);
 
-
+        TextView name = findViewById(R.id.dbtest);
+        Remote connection = new Remote();
+        HashMap<String, String> user = new HashMap<String, String>();
+        user.put("Abraham", "q1w2e3");
+        Remote.sendDataPostMethod("", user);
 
 
 
