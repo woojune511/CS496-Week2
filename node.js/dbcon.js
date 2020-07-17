@@ -9,6 +9,7 @@ Client.connect('mongodb://localhost:27017/test', function(error, db){
         // List all the available databases
         adminDb.listDatabases(function(err, result) {
           console.log(result.databases);
+        })
         db.close();
     }
 });
