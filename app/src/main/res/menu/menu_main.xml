@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_settings"
+        android:title="환경설정"
+        android:icon="@drawable/ic_baseline_settings_24"
+        app:showAsAction="always"/>
+
+    <group android:id="@+id/menu_group_contact"
+        android:visible="true">
+        <item
+            android:id="@+id/action_get_contact"
+            android:title="연락처 불러오기"
+            app:showAsAction="never" />
+        <item
+            android:id="@+id/action_add_contact"
+            android:title="연락처 추가"
+            app:showAsAction="never"/>
+    </group>
+
+    <group android:id="@+id/menu_group_gallery"
+        android:visible="true">
+        <item
+            android:id="@+id/action_gallery1"
+            android:title="@string/option_gallery_1"
+            app:showAsAction="never"/>
+
+        <item
+            android:id="@+id/action_gallery2"
+            android:title="@string/option_gallery_2"
+            app:showAsAction="never"/>
+    </group>
+
+    <group android:id="@+id/menu_group_tab3"
+        android:visible="true">
+        <item
+            android:id="@+id/action_choose_city"
+            android:title="동네 선택"
+            android:icon="@drawable/ic_baseline_location_city_24"
+            app:showAsAction="always"/>
+    </group>
+
+</menu>

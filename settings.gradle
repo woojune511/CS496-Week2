@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name = "CS496-Week2"
+rootProject.name = "madcamp_week1"
