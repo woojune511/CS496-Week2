@@ -31,7 +31,7 @@ var server = http.createServer(function(request, response){
     
     else if(cmds[1] == "signin"){
         if(request.method == "GET"){
-            mongo.connect("mongodb://localhost:27017/serverdb", (error, db)=>{
+            mongo.connect("mongodb://localhost:27017/test", (error, db)=>{
                 if(error){
                     response.write(error);
                     response.end("");
@@ -39,7 +39,7 @@ var server = http.createServer(function(request, response){
 
                 else{
                     var datas = qs.parse(structedUrl.query);
-                    var cursor = db.collection("user").find(datas);
+                    var cursor = db.collection("users").find(datas);
                     var item ={
                         name: "",
                         password: ""

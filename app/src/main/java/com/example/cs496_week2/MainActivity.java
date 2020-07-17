@@ -55,7 +55,8 @@ public class MainActivity extends AppCompatActivity {
         Remote connection = new Remote();
         HashMap<String, String> user = new HashMap<String, String>();
         user.put("Abraham", "q1w2e3");
-        Remote.sendDataPostMethod("", user);
+        String result = Remote.sendDataPostMethod("http://192.249.19.242:6122/signin", user);
+        name.setText(result);
 
 
 
