@@ -8,12 +8,12 @@ const gallerySchema = new mongoose.Schema({
   timestamps: true
 });
 
-// Create new todo document
+// Create new picture document
 gallerySchema.statics.create = function (payload) {
     // this === Model
-    const todo = new this(payload);
+    const picture = new this(payload);
     // return Promise
-    return todo.save();
+    return picture.save();
 };
 
 
