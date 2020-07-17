@@ -5,7 +5,7 @@ Client.connect('mongodb://localhost:27017/test', function(error, db){
         console.log(error);
     } else {
         console.log("connected:"+db);
-        var adminDb = db.admin();
+        var adminDb = db.db('test').admin();
         // List all the available databases
         adminDb.listDatabases(function(err, result) {
           console.log(result.databases);
