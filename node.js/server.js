@@ -2,7 +2,7 @@
 var mongoose = require('mongoose');
 
 // 2. testDB 세팅
-var uri = 'mongodb://root:h09e%#D6TV@192.249.19.242:6122/test'; 
+var uri = 'mongodb://localhost/test'; 
 mongoose.connect(uri);
 
 // 3. 연결된 testDB 사용
