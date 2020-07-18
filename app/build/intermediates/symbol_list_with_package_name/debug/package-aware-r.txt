@@ -821,6 +821,7 @@ color error_color_material_dark
 color error_color_material_light
 color foreground_material_dark
 color foreground_material_light
+color gray
 color highlighted_text_material_dark
 color highlighted_text_material_light
 color material_blue_grey_800
@@ -1356,6 +1357,7 @@ drawable design_ic_visibility
 drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
+drawable doome
 drawable ic_add
 drawable ic_baseline_contacts_24
 drawable ic_baseline_image_24
@@ -1404,8 +1406,12 @@ id BOTTOM_END
 id BOTTOM_START
 id CTRL
 id CallButton
+id CancelButton
+id ConfirmButton
 id FUNCTION
 id META
+id NameInput
+id NumInput
 id SHIFT
 id SYM
 id TOP_END
@@ -1474,6 +1480,7 @@ id beginning
 id blocking
 id bottom
 id buttonPanel
+id buttonSubmit
 id cancel_button
 id center
 id center_horizontal
@@ -1511,13 +1518,14 @@ id direct
 id disableHome
 id dropdown_menu
 id edit_query
+id edittextEmailAddress
+id edittextPassword
 id end
 id enterAlways
 id enterAlwaysCollapsed
 id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
-id fab
 id fade
 id fill
 id fill_horizontal
@@ -1582,6 +1590,7 @@ id mtrl_picker_text_input_range_end
 id mtrl_picker_text_input_range_start
 id mtrl_picker_title_text
 id multiply
+id name
 id nameTextView
 id navigation_header_container
 id never
@@ -1592,6 +1601,7 @@ id notification_background
 id notification_main_column
 id notification_main_column_container
 id numTextView
+id number
 id off
 id on
 id outline
@@ -1680,6 +1690,9 @@ id text_input_start_icon
 id textinput_counter
 id textinput_error
 id textinput_helper_text
+id textviewEmailAddress
+id textviewLogo
+id textviewPassword
 id time
 id title
 id titleDividerNoCustom
@@ -1765,6 +1778,7 @@ layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_main
+layout add_contact
 layout custom_dialog
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
@@ -1782,8 +1796,10 @@ layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
 layout fragment_contact
+layout fragment_contact_add
 layout fragment_contact_sub
 layout fragment_main
+layout item_contact
 layout mtrl_alert_dialog
 layout mtrl_alert_dialog_actions
 layout mtrl_alert_dialog_title
@@ -1921,6 +1937,7 @@ string search_menu_title
 string status_bar_notification_info_overflow
 string tab_text_1
 string tab_text_2
+string tab_text_3
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light
 style Animation_AppCompat_Dialog
@@ -2372,6 +2389,7 @@ style Theme_MaterialComponents_Light_NoActionBar
 style Theme_MaterialComponents_Light_NoActionBar_Bridge
 style Theme_MaterialComponents_NoActionBar
 style Theme_MaterialComponents_NoActionBar_Bridge
+style Theme_MyDialog
 style ThemeOverlay_AppCompat
 style ThemeOverlay_AppCompat_ActionBar
 style ThemeOverlay_AppCompat_Dark

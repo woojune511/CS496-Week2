@@ -3,6 +3,7 @@ package com.example.madcamp_week2.ui.main.contact
 import android.Manifest
 import android.content.ContentProviderOperation
 import android.content.ContentValues
+import android.content.Intent
 import android.content.OperationApplicationException
 import android.content.pm.PackageManager
 import android.os.Bundle
@@ -13,14 +14,18 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.madcamp_week2.R
-import java.util.ArrayList
+import java.util.*
 
 class ContactFragment : Fragment() {
+    private lateinit var recyclerView: RecyclerView
+    lateinit var pBooksList: List<PhoneBook>
+    val DIALOG_REQUEST_CODE: Int = 1234
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,14 +36,39 @@ class ContactFragment : Fragment() {
         //return inflater.inflate(R.layout.fragment_contact, container, false)
         setHasOptionsMenu(true)
         val view = inflater.inflate(R.layout.fragment_contact, container, false)
-        var recyclerView: RecyclerView = view.findViewById(R.id.phoneList)
+        recyclerView = view.findViewById(R.id.phoneList)
         recyclerView.apply {
             adapter = ContactViewAdapter(context, mutableListOf())
             layoutManager = LinearLayoutManager(context)
         }
 
+        //checkLocationPermission()
+        //if(checkLocationPermission())
+            //showContacts()
+
+        val addButton = view.findViewById<View>(R.id.AddButton) as ImageButton
+
+        addButton.setOnClickListener {
+            val intent = Intent(activity, ContactFAB::class.java)
+            startActivityForResult(intent, 1)
+        }
+
         return view
     }
+
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+//        var newName: String? = ""
+//        var newNum: String? = ""
+//
+//        if (requestCode == 1) {
+//            if (resultCode == RESULT_OK) {
+//                newName = data.getStringExtra("newName")
+//                newNum = data.getStringExtra("newNum")
+//                if (checkWritePermission())
+//                    writeContact(newName!!, newNum!!)
+//            }
+//        }
+//    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -53,6 +83,15 @@ class ContactFragment : Fragment() {
     /***********************************************************/
     /************** legacy codes -> used in week 1 *************/
     /***********************************************************/
+
+    fun showContacts() {
+        // FIXME: getContacts() -> Data from server
+        pBooksList = getContacts()
+        recyclerView.apply {
+            adapter = ContactViewAdapter(context, pBooksList)
+            //Log.d(TAG, "permission granted!")
+        }
+    }
 
     fun getContacts(): List<PhoneBook> {
         // 데이터베이스 혹은 content resolver 를 통해 가져온 데이터를 적재할 저장소를 먼저 정의
@@ -168,10 +207,9 @@ class ContactFragment : Fragment() {
     }
 
     /***********************************************************/
-    /************ use REQUEST_CODE-> is it necessary? **********/
+    /************ use REQUEST_CODE?  is it necessary? **********/
     /***********************************************************/
 
-    /*
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -200,7 +238,7 @@ class ContactFragment : Fragment() {
                 if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
                     // permission was granted, yay! Do the
                     // contacts-related task you need to do.
-                    val newFrag = dialogFragment(this)
+                    val newFrag = ContactAdd(this)
                     newFrag.setTargetFragment(this, DIALOG_REQUEST_CODE)
                     newFrag.show(fragmentManager!!.beginTransaction(), "dialog")
                     Log.d(ContentValues.TAG, "permission granted!")
@@ -219,7 +257,6 @@ class ContactFragment : Fragment() {
             }
         }
     }
-    */
 
 //    override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> {
 //        TODO("Not yet implemented")
