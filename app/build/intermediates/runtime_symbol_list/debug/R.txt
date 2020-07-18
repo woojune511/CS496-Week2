@@ -2077,8 +2077,9 @@ int string summary_collapsed_preference_list 0x7f10005a
 int string tab_text_1 0x7f10005b
 int string tab_text_2 0x7f10005c
 int string tab_text_3 0x7f10005d
-int string v7_preference_off 0x7f10005e
-int string v7_preference_on 0x7f10005f
+int string url 0x7f10005e
+int string v7_preference_off 0x7f10005f
+int string v7_preference_on 0x7f100060
 int style Alert_Button_Neutral 0x7f110000
 int style Alert_Button_Positive 0x7f110001
 int style AlertDialog_AppCompat 0x7f110002

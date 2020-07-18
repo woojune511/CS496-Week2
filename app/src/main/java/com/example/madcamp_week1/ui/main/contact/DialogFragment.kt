@@ -14,6 +14,8 @@ import com.example.madcamp_week1.R
 
 class dialogFragment(val parent : ContactFragment) : DialogFragment() {
 
+    compositeDisposable
+
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val builder = AlertDialog.Builder(activity!!)
         val inflater = activity!!.layoutInflater

@@ -6,10 +6,8 @@ package com.example.madcamp_week1.ui.main.contact
 
 //import androidx.test.core.app.ApplicationProvider
 import android.Manifest
-import android.app.Activity
 import android.content.ContentProviderOperation
 import android.content.ContentValues.TAG
-import android.content.Intent
 import android.content.OperationApplicationException
 import android.content.pm.PackageManager
 import android.os.Bundle
@@ -23,10 +21,12 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.madcamp_week1.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.util.*
@@ -55,6 +55,10 @@ class ContactFragment : Fragment() { //, LoaderManager.LoaderCallbacks<Cursor>, 
             layoutManager = LinearLayoutManager(context)
         }
         //view.findViewById<TextView>(R.id.section_label).text = "Contacts"
+
+        if(checkLocationPermission())
+            showContacts()
+        checkWritePermission()
 
         return view
     }
@@ -85,6 +89,14 @@ class ContactFragment : Fragment() { //, LoaderManager.LoaderCallbacks<Cursor>, 
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    fun showContacts() {
+        pBooksList = getContacts()
+        recyclerView.apply {
+            adapter = ContactViewAdapter(context, pBooksList)
+            //Log.d(TAG, "permission granted!")
+        }
     }
 
     fun getContacts(): List<PhoneBook> {

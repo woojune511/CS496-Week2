@@ -67,6 +67,8 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation files('libs/libDaumMapAndroid.jar')
     implementation("com.github.doyaaaaaken:kotlin-csv-jvm:0.10.4")
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
 
     def preference_version = "1.1.1"
     // Java language implementation

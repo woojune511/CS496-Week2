@@ -2078,6 +2078,7 @@ string summary_collapsed_preference_list
 string tab_text_1
 string tab_text_2
 string tab_text_3
+string url
 string v7_preference_off
 string v7_preference_on
 style Alert_Button_Neutral

@@ -5,15 +5,19 @@ import android.os.Bundle
 import android.os.Environment
 import android.util.Log
 import android.view.Menu
-import androidx.viewpager.widget.ViewPager
 import android.view.MenuItem
+import androidx.viewpager.widget.ViewPager
 import com.example.madcamp_week1.ui.main.SectionsPagerAdapter
 import com.google.android.material.tabs.TabLayout
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
 import java.io.FileNotFoundException
 import java.io.FileOutputStream
 import java.io.IOException
-import java.lang.Exception
 import kotlin.system.exitProcess
 
 val TAB_TITLES = arrayOf(
@@ -27,7 +31,6 @@ class MainActivity : ThemeChangeActivity(true) {
     private val REQUEST_SETTING = 2
     private val TAG = "mainTAG"
     private lateinit var curTheme: String
-
     private fun writeImagesToStorage() {
         Log.d("Gallery", ">> writeImagesToStorage")
         val assetManager = assets

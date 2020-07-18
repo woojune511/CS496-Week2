@@ -8,4 +8,5 @@
     <string name="cancel">취소</string>
     <string name="ok">확인</string>
     <color name="gray">#f4f4f4</color>
+    <string name="url">"http://192.249.19.242:6980"</string>
 </resources>
