@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "applicationId": "com.example.madcamp_week1",
+  "applicationId": "com.example.madcamp_week2",
   "variantType": "BASE_APK",
   "elements": [
     {
@@ -8,24 +8,18 @@
         "type": "PROCESSED_RES"
       },
       "apkData": {
-        "type": "FULL_SPLIT",
-        "splits": [
-          {
-            "filterType": "ABI",
-            "value": "x86"
-          }
-        ],
+        "type": "MAIN",
+        "splits": [],
         "versionCode": 1,
         "versionName": "1.0",
-        "filterName": "x86",
-        "outputFile": "app-x86-debug.apk",
-        "fullName": "x86Debug",
-        "baseName": "x86-debug",
-        "dirName": "x86\\"
+        "outputFile": "app-debug.apk",
+        "fullName": "debug",
+        "baseName": "debug",
+        "dirName": ""
       },
-      "path": "resources-x86Debug.ap_",
+      "path": "resources-debug.ap_",
       "properties": {
-        "packageId": "com.example.madcamp_week1",
+        "packageId": "com.example.madcamp_week2",
         "split": "",
         "minSdkVersion": "16"
       }

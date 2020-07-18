@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="madcamp_week1/app" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/madcamp_week1.iml" filepath="$PROJECT_DIR$/.idea/modules/madcamp_week1.iml" group="madcamp_week1" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="madcamp_week2/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/madcamp_week2.iml" filepath="$PROJECT_DIR$/.idea/modules/madcamp_week2.iml" group="madcamp_week2" />
     </modules>
   </component>
 </project>

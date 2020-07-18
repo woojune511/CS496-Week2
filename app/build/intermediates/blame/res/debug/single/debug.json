@@ -1,150 +1,190 @@
 [
     {
-        "merged": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_ic_launcher_round.png.flat",
-        "source": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_round.png"
+        "merged": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_baseline_contacts_24.png.flat",
+        "source": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\ic_baseline_contacts_24.png"
     },
     {
-        "merged": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher_round.png.flat",
-        "source": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_round.png"
+        "merged": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_ic_launcher_background.png.flat",
+        "source": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxxhdpi\\ic_launcher_background.png"
     },
     {
-        "merged": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ic_launcher.png.flat",
-        "source": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png"
+        "merged": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_baseline_contacts_24.png.flat",
+        "source": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\ic_baseline_contacts_24.png"
     },
     {
-        "merged": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_launcher_round.png.flat",
-        "source": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_round.png"
+        "merged": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_baseline_image_24.png.flat",
+        "source": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\ic_baseline_image_24.png"
     },
     {
-        "merged": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher.png.flat",
-        "source": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
+        "merged": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_contact.xml.flat",
+        "source": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\src\\main\\res\\layout\\fragment_contact.xml"
     },
     {
-        "merged": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_baseline_map_24.xml.flat",
-        "source": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\src\\main\\res\\drawable\\ic_baseline_map_24.xml"
+        "merged": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_baseline_map_24.png.flat",
+        "source": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\ic_baseline_map_24.png"
     },
     {
-        "merged": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_baseline_palette_24.xml.flat",
-        "source": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\src\\main\\res\\drawable\\ic_baseline_palette_24.xml"
+        "merged": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_round.png"
     },
     {
-        "merged": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_baseline_settings_24.xml.flat",
-        "source": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\src\\main\\res\\drawable\\ic_baseline_settings_24.xml"
+        "merged": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_ic_baseline_image_24.png.flat",
+        "source": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\ic_baseline_image_24.png"
     },
     {
-        "merged": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher_round.png.flat",
-        "source": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_round.png"
+        "merged": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher_round.xml"
     },
     {
-        "merged": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_ic_launcher_foreground.xml.flat",
-        "source": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\src\\main\\res\\drawable-v24\\ic_launcher_foreground.xml"
+        "merged": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\intermediates\\res\\merged\\debug\\drawable_buttonstyle.xml.flat",
+        "source": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\src\\main\\res\\drawable\\buttonstyle.xml"
     },
     {
-        "merged": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_baseline_image_24.xml.flat",
-        "source": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\src\\main\\res\\drawable\\ic_baseline_image_24.xml"
+        "merged": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher.xml"
     },
     {
-        "merged": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\build\\intermediates\\res\\merged\\debug\\layout_dialog_placeinfo.xml.flat",
-        "source": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\src\\main\\res\\layout\\dialog_placeinfo.xml"
+        "merged": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_ic_baseline_image_24.xml.flat",
+        "source": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v21\\ic_baseline_image_24.xml"
     },
     {
-        "merged": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_main.xml.flat",
-        "source": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\src\\main\\res\\layout\\activity_main.xml"
+        "merged": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_ic_baseline_map_24.xml.flat",
+        "source": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v21\\ic_baseline_map_24.xml"
     },
     {
-        "merged": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_baseline_my_location_24.xml.flat",
-        "source": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\src\\main\\res\\drawable\\ic_baseline_my_location_24.xml"
+        "merged": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
     },
     {
-        "merged": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_launcher_background.xml.flat",
-        "source": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\src\\main\\res\\drawable\\ic_launcher_background.xml"
+        "merged": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_launcher_background.png.flat",
+        "source": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\generated\\res\\pngs\\debug\\drawable-xhdpi\\ic_launcher_background.png"
     },
     {
-        "merged": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_contact.xml.flat",
-        "source": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\src\\main\\res\\layout\\fragment_contact.xml"
+        "merged": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_baseline_contacts_24.png.flat",
+        "source": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\ic_baseline_contacts_24.png"
     },
     {
-        "merged": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_main.xml.flat",
-        "source": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\src\\main\\res\\layout\\fragment_main.xml"
+        "merged": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_round.png"
     },
     {
-        "merged": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_launcher.png.flat",
-        "source": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
+        "merged": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_ic_baseline_map_24.png.flat",
+        "source": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\ic_baseline_map_24.png"
     },
     {
-        "merged": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_baseline_location_city_24.xml.flat",
-        "source": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\src\\main\\res\\drawable\\ic_baseline_location_city_24.xml"
+        "merged": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_ic_baseline_contacts_24.xml.flat",
+        "source": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v21\\ic_baseline_contacts_24.xml"
     },
     {
-        "merged": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\build\\intermediates\\res\\merged\\debug\\layout_item_image.xml.flat",
-        "source": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\src\\main\\res\\layout\\item_image.xml"
+        "merged": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_round.png"
     },
     {
-        "merged": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_gallery.xml.flat",
-        "source": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\src\\main\\res\\layout\\fragment_gallery.xml"
+        "merged": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_launcher_background.png.flat",
+        "source": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\ic_launcher_background.png"
     },
     {
-        "merged": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher.png.flat",
-        "source": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
+        "merged": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.png"
     },
     {
-        "merged": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
-        "source": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+        "merged": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\src\\main\\res\\layout\\activity_main.xml"
     },
     {
-        "merged": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ic_launcher_round.png.flat",
-        "source": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_round.png"
+        "merged": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_ic_baseline_contacts_24.png.flat",
+        "source": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\ic_baseline_contacts_24.png"
     },
     {
-        "merged": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\build\\intermediates\\res\\merged\\debug\\xml_filepaths.xml.flat",
-        "source": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\src\\main\\res\\xml\\filepaths.xml"
+        "merged": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_round.png"
     },
     {
-        "merged": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_settings.xml.flat",
-        "source": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\src\\main\\res\\layout\\activity_settings.xml"
+        "merged": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_baseline_image_24.png.flat",
+        "source": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\generated\\res\\pngs\\debug\\drawable-xhdpi\\ic_baseline_image_24.png"
     },
     {
-        "merged": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_icon.png.flat",
-        "source": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\src\\main\\res\\drawable-v24\\icon.png"
+        "merged": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_main.xml.flat",
+        "source": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\src\\main\\res\\layout\\fragment_main.xml"
     },
     {
-        "merged": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\build\\intermediates\\res\\merged\\debug\\layout_item_contact.xml.flat",
-        "source": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\src\\main\\res\\layout\\item_contact.xml"
+        "merged": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_baseline_map_24.png.flat",
+        "source": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\ic_baseline_map_24.png"
     },
     {
-        "merged": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_map.xml.flat",
-        "source": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\src\\main\\res\\layout\\fragment_map.xml"
+        "merged": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_baseline_image_24.png.flat",
+        "source": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\ic_baseline_image_24.png"
     },
     {
-        "merged": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher.xml"
+        "merged": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_launcher_background.png.flat",
+        "source": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\ic_launcher_background.png"
     },
     {
-        "merged": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\build\\intermediates\\res\\merged\\debug\\menu_menu_main.xml.flat",
-        "source": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\src\\main\\res\\menu\\menu_main.xml"
+        "merged": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_ic_baseline_image_24.png.flat",
+        "source": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxxhdpi\\ic_baseline_image_24.png"
     },
     {
-        "merged": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\build\\intermediates\\res\\merged\\debug\\layout_add_contact.xml.flat",
-        "source": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\src\\main\\res\\layout\\add_contact.xml"
+        "merged": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_baseline_image_24.png.flat",
+        "source": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\ic_baseline_image_24.png"
     },
     {
-        "merged": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_ic_launcher.png.flat",
-        "source": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.png"
+        "merged": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
     },
     {
-        "merged": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_baseline_contacts_24.xml.flat",
-        "source": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\src\\main\\res\\drawable\\ic_baseline_contacts_24.xml"
+        "merged": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_ic_launcher_foreground.xml.flat",
+        "source": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\src\\main\\res\\drawable-v24\\ic_launcher_foreground.xml"
     },
     {
-        "merged": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_image_load.jpg.flat",
-        "source": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\src\\main\\res\\drawable-v24\\image_load.jpg"
+        "merged": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_contact_sub.xml.flat",
+        "source": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\src\\main\\res\\layout\\fragment_contact_sub.xml"
     },
     {
-        "merged": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\build\\intermediates\\res\\merged\\debug\\xml_preferences.xml.flat",
-        "source": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\src\\main\\res\\xml\\preferences.xml"
+        "merged": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_baseline_map_24.png.flat",
+        "source": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\ic_baseline_map_24.png"
     },
     {
-        "merged": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\build\\intermediates\\res\\merged\\debug\\layout_dialog_number.xml.flat",
-        "source": "C:\\Users\\q\\AndroidStudioProjects\\CS496-Week2\\app\\src\\main\\res\\layout\\dialog_number.xml"
+        "merged": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_ic_launcher_background.xml.flat",
+        "source": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v21\\ic_launcher_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_ic_baseline_map_24.png.flat",
+        "source": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxxhdpi\\ic_baseline_map_24.png"
+    },
+    {
+        "merged": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_add.png.flat",
+        "source": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\src\\main\\res\\drawable\\ic_add.png"
+    },
+    {
+        "merged": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_ic_launcher_background.png.flat",
+        "source": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\ic_launcher_background.png"
+    },
+    {
+        "merged": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_launcher_background.png.flat",
+        "source": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\ic_launcher_background.png"
+    },
+    {
+        "merged": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_ic_baseline_contacts_24.png.flat",
+        "source": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxxhdpi\\ic_baseline_contacts_24.png"
+    },
+    {
+        "merged": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_baseline_contacts_24.png.flat",
+        "source": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\generated\\res\\pngs\\debug\\drawable-xhdpi\\ic_baseline_contacts_24.png"
+    },
+    {
+        "merged": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_baseline_map_24.png.flat",
+        "source": "C:\\Users\\q\\AndroidStudioProjects\\madcamp_week2\\app\\build\\generated\\res\\pngs\\debug\\drawable-xhdpi\\ic_baseline_map_24.png"
     }
 ]
