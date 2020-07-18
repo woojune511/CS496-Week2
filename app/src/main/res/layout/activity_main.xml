@@ -1,57 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:orientation="vertical"
+    android:weightSum="4"
+    tools:context=".MainActivity"
+    android:background="@drawable/login">
 
-    <com.google.android.material.tabs.TabLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="247dp"
-        android:id="@+id/tabLayout"
-        app:layout_constraintTop_toTopOf="parent">
-    </com.google.android.material.tabs.TabLayout>
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+<!--            <ImageView-->
+<!--                android:src="@drawable/login"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:scaleType="fitXY" />-->
+            <TextView
+                android:id="@+id/txt_create_account"
+                android:text="+ CREATE ACCOUNT"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:layout_margin="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </FrameLayout>
+    </LinearLayout>
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/pager_content"
+    <LinearLayout
+        android:orientation="vertical"
+        android:background="#00FFFFFF"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="52dp"
-        app:layout_constraintTop_toBottomOf="@+id/tabLayout"
-        tools:layout_editor_absoluteX="-27dp" />
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:padding="16dp">
 
-    <Button
-        android:id="@+id/btn_custom_logout"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:text="Sign Out"
-        android:textAllCaps="false"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textColor="#FFFFFF"
-        />
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/edt_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:textColorHint="@color/myTextColor"
+            app:met_baseColor="@color/myTextColor"
+            app:met_primaryColor="@color/myTextColor"
+            app:met_iconPadding="0dp"
+            app:met_iconRight="@drawable/ic_email"
+            />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Main Activity"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:textSize="14pt"
-        android:id="@+id/txtv"
-        />
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/edt_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:textColorHint="@color/myTextColor"
+            app:met_baseColor="@color/myTextColor"
+            app:met_primaryColor="@color/myTextColor"
+            app:met_iconPadding="0dp"
+            app:met_iconRight="@drawable/ic_lock"
+            />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Main Activity"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:textSize="14pt"
-        android:id="@+id/dbtest"
-        />
+        <Button
+            android:id="@+id/btn_login"
+            style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="#431F63"
+            android:text="LOGIN"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <!--        <EditText-->
+<!--            android:id="@+id/edt_email"-->
+<!--            android:hint="Email"-->
+<!--            android:inputType="textEmailAddress"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            />-->
+
+<!--        <EditText-->
+<!--            android:id="@+id/edt_password"-->
+<!--            android:hint="Password"-->
+<!--            android:inputType="textEmailAddress"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            />-->
+
+    </LinearLayout>
+
+
+</LinearLayout>
