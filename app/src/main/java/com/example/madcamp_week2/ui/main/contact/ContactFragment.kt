@@ -1,10 +1,7 @@
 package com.example.madcamp_week2.ui.main.contact
 
 import android.Manifest
-import android.content.ContentProviderOperation
-import android.content.ContentValues
-import android.content.Intent
-import android.content.OperationApplicationException
+import android.content.*
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.RemoteException
@@ -15,10 +12,13 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.madcamp_week2.R
 import java.util.*
 
@@ -26,34 +26,69 @@ class ContactFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     lateinit var pBooksList: List<PhoneBook>
     val DIALOG_REQUEST_CODE: Int = 1234
+    lateinit var addButton: ImageButton
+    private val REQUEST: Int = 0
+    private val REQUEST2: Int = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true)
+        //setHasOptionsMenu(true)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         //return inflater.inflate(R.layout.fragment_contact, container, false)
-        setHasOptionsMenu(true)
+        //setHasOptionsMenu(true)
         val view = inflater.inflate(R.layout.fragment_contact, container, false)
+
+        val cl = view.findViewById<View>(R.id.ConstraintLayout) as ConstraintLayout
         recyclerView = view.findViewById(R.id.phoneList)
         recyclerView.apply {
             adapter = ContactViewAdapter(context, mutableListOf())
             layoutManager = LinearLayoutManager(context)
         }
 
-        //checkLocationPermission()
-        //if(checkLocationPermission())
-            //showContacts()
-
-        val addButton = view.findViewById<View>(R.id.AddButton) as ImageButton
-
+        var addButton = view.findViewById<View>(R.id.AddButton) as ImageButton
         addButton.setOnClickListener {
+            Log.d("button", "add button!")
             val intent = Intent(activity, ContactFAB::class.java)
             startActivityForResult(intent, 1)
         }
 
+        if (checkLocationPermission()) showContacts()
+        checkWritePermission()
+
+        val itemTouchHelper = ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
+                override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
+                    return false
+                }
+
+                override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                    //deleteContact(context, pBooksList.get(viewHolder.adapterPosition).getId().toLong())
+                    refresh()
+                }
+            })
+
+        itemTouchHelper.attachToRecyclerView(recyclerView)
+
+        addButton = view.findViewById<View>(R.id.AddButton) as ImageButton
+        val mSwipeRefreshLayout = view.findViewById<View>(R.id.swipe_layout) as SwipeRefreshLayout
+
+        mSwipeRefreshLayout.setOnRefreshListener {
+            if (checkLocationPermission()) showContacts()
+            mSwipeRefreshLayout.isRefreshing = false
+        }
+
         return view
+    }
+
+    fun deleteContact(context: Context, contactId: Long) {
+        context.contentResolver.delete(ContactsContract.RawContacts.CONTENT_URI,
+            ContactsContract.RawContacts.CONTACT_ID + "=" + contactId, null)
+    }
+
+    private fun refresh() {
+        val transaction = fragmentManager!!.beginTransaction()
+        transaction.detach(this).attach(this).commit()
     }
 
 //    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
@@ -238,9 +273,9 @@ class ContactFragment : Fragment() {
                 if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
                     // permission was granted, yay! Do the
                     // contacts-related task you need to do.
-                    val newFrag = ContactAdd(this)
-                    newFrag.setTargetFragment(this, DIALOG_REQUEST_CODE)
-                    newFrag.show(fragmentManager!!.beginTransaction(), "dialog")
+                    //val newFrag = ContactAdd(this)
+                    //newFrag.setTargetFragment(this, DIALOG_REQUEST_CODE)
+                    //newFrag.show(fragmentManager!!.beginTransaction(), "dialog")
                     Log.d(ContentValues.TAG, "permission granted!")
                 } else {
                     // permission denied, boo! Disable the

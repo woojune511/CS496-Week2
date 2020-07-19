@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.example.madcamp_week2.R
 import com.example.madcamp_week2.ui.main.contact.ContactFragment
+import com.example.madcamp_week2.ui.main.gallery.GalleryFragment
 
 private val TAB_IMAGES = arrayOf(
     R.drawable.ic_baseline_contacts_24,
@@ -32,8 +33,8 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager)
         // return PlaceholderFragment.newInstance(position + 1)
         return when(position) {
             0 -> ContactFragment()
-            1 -> ContactFragment()
-            //1 -> GalleryFragment()
+            //1 -> ContactFragment()
+            1 -> GalleryFragment()
             //2 -> ThirdFragment()
             else -> Fragment()
         }

@@ -27,6 +27,8 @@ anim design_bottom_sheet_slide_in
 anim design_bottom_sheet_slide_out
 anim design_snackbar_in
 anim design_snackbar_out
+anim fab_close
+anim fab_open
 anim fragment_close_enter
 anim fragment_close_exit
 anim fragment_fade_enter
@@ -899,6 +901,7 @@ color mtrl_textinput_focused_box_stroke_color
 color mtrl_textinput_hovered_box_stroke_color
 color notification_action_color_filter
 color notification_icon_bg_color
+color notification_material_background_media_default_color
 color primary_dark_material_dark
 color primary_dark_material_light
 color primary_material_dark
@@ -1245,6 +1248,10 @@ dimen notification_small_icon_size_as_large
 dimen notification_subtext_size
 dimen notification_top_pad
 dimen notification_top_pad_large_text
+dimen subtitle_corner_radius
+dimen subtitle_outline_width
+dimen subtitle_shadow_offset
+dimen subtitle_shadow_radius
 dimen test_mtrl_calendar_day_cornerSize
 dimen tooltip_corner_radius
 dimen tooltip_horizontal_padding
@@ -1351,6 +1358,8 @@ drawable btn_radio_off_to_on_mtrl_animation
 drawable btn_radio_on_mtrl
 drawable btn_radio_on_to_off_mtrl_animation
 drawable buttonstyle
+drawable camera_btn
+drawable delete
 drawable design_bottom_navigation_item_background
 drawable design_fab_background
 drawable design_ic_visibility
@@ -1364,6 +1373,7 @@ drawable ic_baseline_image_24
 drawable ic_baseline_map_24
 drawable ic_calendar_black_24dp
 drawable ic_clear_black_24dp
+drawable ic_close
 drawable ic_edit_black_24dp
 drawable ic_keyboard_arrow_left_black_24dp
 drawable ic_keyboard_arrow_right_black_24dp
@@ -1408,6 +1418,7 @@ id CTRL
 id CallButton
 id CancelButton
 id ConfirmButton
+id ConstraintLayout
 id FUNCTION
 id META
 id NameInput
@@ -1450,6 +1461,7 @@ id accessibility_custom_action_6
 id accessibility_custom_action_7
 id accessibility_custom_action_8
 id accessibility_custom_action_9
+id action0
 id action_bar
 id action_bar_activity_content
 id action_bar_container
@@ -1481,6 +1493,7 @@ id blocking
 id bottom
 id buttonPanel
 id buttonSubmit
+id cancel_action
 id cancel_button
 id center
 id center_horizontal
@@ -1521,11 +1534,15 @@ id edit_query
 id edittextEmailAddress
 id edittextPassword
 id end
+id end_padder
 id enterAlways
 id enterAlwaysCollapsed
 id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
+id fab_main
+id fab_sub1
+id fab_sub2
 id fade
 id fill
 id fill_horizontal
@@ -1539,6 +1556,7 @@ id fragment_container_view_tag
 id ghost_view
 id ghost_view_holder
 id gone
+id gridView
 id group_divider
 id groups
 id hideable
@@ -1548,6 +1566,8 @@ id icon
 id icon_group
 id ifRoom
 id image
+id imageButton
+id imageView
 id info
 id invisible
 id italic
@@ -1560,6 +1580,7 @@ id line3
 id listMode
 id list_item
 id masked
+id media_actions
 id message
 id middle
 id mini
@@ -1594,6 +1615,7 @@ id name
 id nameTextView
 id navigation_header_container
 id never
+id noImages
 id noScroll
 id none
 id normal
@@ -1664,9 +1686,11 @@ id src_in
 id src_over
 id standard
 id start
+id status_bar_latest_event_content
 id stretch
 id submenuarrow
 id submit_area
+id swipe_layout
 id tabMode
 id tabs
 id tag_accessibility_actions
@@ -1712,6 +1736,7 @@ id up
 id useLogo
 id view_offset_helper
 id view_pager
+id viewpager
 id visible
 id visible_removing_fragment_view_tag
 id withText
@@ -1798,8 +1823,11 @@ layout design_text_input_start_icon
 layout fragment_contact
 layout fragment_contact_add
 layout fragment_contact_sub
+layout fragment_gallery
 layout fragment_main
 layout item_contact
+layout item_image
+layout item_image_slider
 layout mtrl_alert_dialog
 layout mtrl_alert_dialog_actions
 layout mtrl_alert_dialog_title
@@ -1830,8 +1858,17 @@ layout mtrl_picker_text_input_date
 layout mtrl_picker_text_input_date_range
 layout notification_action
 layout notification_action_tombstone
+layout notification_media_action
+layout notification_media_cancel_action
+layout notification_template_big_media
+layout notification_template_big_media_custom
+layout notification_template_big_media_narrow
+layout notification_template_big_media_narrow_custom
 layout notification_template_custom_big
 layout notification_template_icon_group
+layout notification_template_lines_media
+layout notification_template_media
+layout notification_template_media_custom
 layout notification_template_part_chronometer
 layout notification_template_part_time
 layout select_dialog_item_material
@@ -2284,9 +2321,14 @@ style TextAppearance_AppCompat_Widget_Switch
 style TextAppearance_AppCompat_Widget_TextView_SpinnerItem
 style TextAppearance_Compat_Notification
 style TextAppearance_Compat_Notification_Info
+style TextAppearance_Compat_Notification_Info_Media
 style TextAppearance_Compat_Notification_Line2
+style TextAppearance_Compat_Notification_Line2_Media
+style TextAppearance_Compat_Notification_Media
 style TextAppearance_Compat_Notification_Time
+style TextAppearance_Compat_Notification_Time_Media
 style TextAppearance_Compat_Notification_Title
+style TextAppearance_Compat_Notification_Title_Media
 style TextAppearance_Design_CollapsingToolbar_Expanded
 style TextAppearance_Design_Counter
 style TextAppearance_Design_Counter_Overflow
@@ -2706,6 +2748,7 @@ styleable View android_theme android_focusable paddingEnd paddingStart theme
 styleable ViewBackgroundHelper android_background backgroundTint backgroundTintMode
 styleable ViewPager2 android_orientation
 styleable ViewStubCompat android_id android_layout android_inflatedId
+xml file_paths
 xml standalone_badge
 xml standalone_badge_gravity_bottom_end
 xml standalone_badge_gravity_bottom_start
