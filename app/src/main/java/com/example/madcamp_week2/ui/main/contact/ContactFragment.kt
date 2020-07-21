@@ -22,7 +22,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.madcamp_week2.R
-import com.example.madcamp_week2.iMyService
+import com.example.madcamp_week2.IMyService
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.functions.Consumer
@@ -37,7 +37,7 @@ class ContactFragment : Fragment() {
     val DIALOG_REQUEST_CODE: Int = 1234
     lateinit var addButton: ImageButton
     var compositeDisposable = CompositeDisposable()
-    var iMyService: iMyService? = null
+    var iMyService: IMyService? = null
     private val REQUEST: Int = 0
     private val REQUEST2: Int = 1
 

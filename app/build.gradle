@@ -48,8 +48,8 @@ dependencies {
 
     implementation 'com.facebook.android:facebook-android-sdk:4.+'
 
-    implementation 'com.github.rengwuxian:MaterialEditText:2.1.4'
+//    implementation 'com.github.rengwuxian:MaterialEditText:2.1.4'
 
-    implementation 'com.github.javiersantos:MaterialStyledDialogs:2.1'
+//    implementation 'com.github.javiersantos:MaterialStyledDialogs:2.1'
 
 }

@@ -936,6 +936,7 @@ color mtrl_textinput_disabled_color
 color mtrl_textinput_filled_box_default_background_color
 color mtrl_textinput_focused_box_stroke_color
 color mtrl_textinput_hovered_box_stroke_color
+color myTextColor
 color notification_action_color_filter
 color notification_icon_bg_color
 color notification_material_background_media_default_color
@@ -1468,6 +1469,7 @@ drawable ic_mtrl_checked_circle
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
+drawable login
 drawable messenger_bubble_large_blue
 drawable messenger_bubble_large_white
 drawable messenger_bubble_small_blue
@@ -1592,6 +1594,7 @@ id browser_actions_menu_item_text
 id browser_actions_menu_items
 id browser_actions_menu_view
 id btn_facebook_login
+id btn_login
 id button
 id buttonPanel
 id buttonSubmit
@@ -1647,6 +1650,8 @@ id dropdown_menu
 id edit_query
 id edittextEmailAddress
 id edittextPassword
+id edt_email
+id edt_password
 id end
 id end_padder
 id enterAlways
@@ -1851,6 +1856,7 @@ id transition_layout_save
 id transition_position
 id transition_scene_layoutid_cache
 id transition_transform
+id txt_create_account
 id unchecked
 id uniform
 id unknown

@@ -4,6 +4,7 @@ package com.example.madcamp_week2
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.text.TextUtils
@@ -16,22 +17,36 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cs496_week2.LoginCallback
-import com.facebook.CallbackManager
-import com.facebook.FacebookCallback
-import com.facebook.FacebookException
-import com.facebook.GraphRequest
+import com.facebook.*
 import com.facebook.login.LoginResult
 import com.facebook.login.widget.LoginButton
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import okhttp3.OkHttpClient
 import org.json.JSONObject
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.security.MessageDigest
-import java.util.*
+import java.util.concurrent.TimeUnit
 
 
 class LoginActivity : AppCompatActivity() {
-    private var mContext: Context? = null
+
+    val API_URL: String = "http://192.249.19.242:6180/"
+
+    var userinfo: UserInfo? = null
+
+    val client = OkHttpClient.Builder()
+        .connectTimeout(1, TimeUnit.MINUTES)
+        .readTimeout(30, TimeUnit.SECONDS)
+        .writeTimeout(30, TimeUnit.SECONDS).build()
+
+    val iMyService: IMyService = Retrofit.Builder().baseUrl(API_URL)
+        .addConverterFactory(GsonConverterFactory.create())
+        .client(client).build().create<IMyService>(IMyService::class.java)
+
+    private var mContext: Context? = this
     private var btn_facebook_login: LoginButton? = null
     private var mLoginCallback: LoginCallback? = null
     private var mCallbackManager: CallbackManager? = null
@@ -41,17 +56,25 @@ class LoginActivity : AppCompatActivity() {
     var edt_login_password: EditText? = null
     var btn_login: Button? = null
     var compositeDisposable = CompositeDisposable()
-    var iMyService: iMyService? = null
     public override fun onStop() {
         compositeDisposable.clear()
         super.onStop()
     }
 
+    fun isLogin(): Boolean {
+        val token: AccessToken? = AccessToken.getCurrentAccessToken()
+        if(token != null){
+//            Log.d("login", token.toString())
+            startActivity(intent)
+            finish()
+            return true
+        } else return false
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
+//        Log.d("login", "start")
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
-        var intent: Intent = Intent(applicationContext, MainActivity::class.java)
 
         btn_facebook_login = findViewById<View>(R.id.btn_facebook_login) as LoginButton
         btn_facebook_login!!.setReadPermissions(
@@ -62,46 +85,55 @@ class LoginActivity : AppCompatActivity() {
 
 //        getHashKey(mContext);
         mCallbackManager = CallbackManager.Factory.create()
+//        Log.d("login", mCallbackManager.toString())
         btn_facebook_login!!.registerCallback(mCallbackManager, object : FacebookCallback<LoginResult> {
             override fun onSuccess(loginResult: LoginResult) {
                 // App code
-                val request = GraphRequest.newMeRequest(
-                    loginResult.accessToken
-                ) { `object`, response ->
-                    Log.v("LoginActivity", response.toString())
+//                Log.d("login", "success")
+                var intent: Intent = Intent(applicationContext, MainActivity::class.java)
+
+                // App code
+                val request = GraphRequest.newMeRequest(loginResult.accessToken) { `object`, response ->
+                    //Log.d("login json", response.jsonObject.toString())
 
                     // Application code
-                    val email = `object`.getString("email")
-                    val birthday =
-                        `object`.getString("birthday") // 01/31/1980 format
+                    val email = response.jsonObject.getString("email")
+                    val id = response.jsonObject.getString("id")
+//                    val birthday = `object`.getString("birthday") // 01/31/1980 format
 
-                    val user_info: JSONObject = response.jsonObject.getJSONObject("graphObject")
-                    val user_id: String = user_info.getString("id")
-                    val user_name: String = user_info.getString("name")
-                    val user_email: String = user_info.getString("email")
+//                    intent.putExtra("user_email", email)
+//                    intent.putExtra("user_id", id)
 
-                    intent.putExtra("user_id", user_id)
-                    intent.putExtra("user_name", user_name)
-                    intent.putExtra("user_email", user_email)
+//                    Log.d("login", email)
+//                    Log.d("login", id)
+//                    Log.d("login", intent.getStringExtra("user_email").toString())
+//                    Log.d("login", intent.getStringExtra("user_id").toString())
+
+                    app.prefs.email = email
+                    app.prefs.id = id
+//                    Log.d("pref", email)
+//                    Log.d("pref", app.prefs.email.toString())
+//                    Log.d("pref", id)
+//                    Log.d("pref", app.prefs.id.toString())
                 }
-
-
                 val parameters = Bundle()
                 parameters.putString("fields", "id,name,email,gender,birthday")
                 request.parameters = parameters
                 request.executeAsync()
+
+//                MainActivity()
                 startActivity(intent)
                 finish()
             }
 
             override fun onCancel() {
                 // App code
-                Log.v("LoginActivity", "cancel")
+                Log.d("login", "cancel")
             }
 
             override fun onError(exception: FacebookException) {
                 // App code
-                Log.v("LoginActivity", exception.cause.toString())
+                Log.d("login", exception.cause.toString())
             }
 
             // 앱 켰을 때 로그인 되어 있는 상태면 바로 mainactivity로 넘어가게 하기
@@ -167,10 +199,10 @@ class LoginActivity : AppCompatActivity() {
             Toast.makeText(this, "Password cannot be null or empty", Toast.LENGTH_SHORT).show()
             return
         }
-        compositeDisposable.add(iMyServiceBak!!.loginUser(email, password)
+        compositeDisposable.add(iMyService!!.loginUser(email, password)!!
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { response -> Toast.makeText(this@MainActivity, "" + response, Toast.LENGTH_SHORT).show() })
+            .subscribe { response -> Toast.makeText(this@LoginActivity, "" + response, Toast.LENGTH_SHORT).show() })
     }
 
     override fun onActivityResult(

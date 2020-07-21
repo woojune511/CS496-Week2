@@ -3,6 +3,7 @@ package com.example.cs496_week2
 import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import com.facebook.*
 import com.facebook.login.LoginResult
 
@@ -10,6 +11,7 @@ import com.facebook.login.LoginResult
 open class LoginCallback : FacebookCallback<LoginResult?> {
     // 로그인 성공 시 호출 됩니다. Access Token 발급 성공.
     override fun onSuccess(loginResult: LoginResult?) {
+        println();
         Log.d("Success", loginResult?.accessToken.toString())
         Log.d("Success", Profile.getCurrentProfile().id.toString())
         Log.d("Success", Profile.getCurrentProfile().name)
