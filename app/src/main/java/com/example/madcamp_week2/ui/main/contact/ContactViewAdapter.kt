@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+//import com.example.madcamp_week2.PhoneBook
 import com.example.madcamp_week2.R
 
 class ContactViewAdapter(private val context: Context, val phoneBookList: List<PhoneBook>):

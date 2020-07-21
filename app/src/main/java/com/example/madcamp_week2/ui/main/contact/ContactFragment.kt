@@ -21,15 +21,22 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.example.madcamp_week2.R
-import com.example.madcamp_week2.IMyService
+import com.example.madcamp_week2.*
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.functions.Consumer
 import io.reactivex.schedulers.Schedulers
 import retrofit2.Retrofit
-import com.example.madcamp_week2.RetrofitClient
+import okhttp3.OkHttpClient
+import org.json.JSONArray
+import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.converter.gson.GsonConverterFactory
 import java.util.*
+import java.util.concurrent.TimeUnit
+import kotlin.reflect.typeOf
 
 class ContactFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
@@ -68,8 +75,9 @@ class ContactFragment : Fragment() {
             startActivityForResult(intent, 1)
         }
 
-        if (checkLocationPermission()) showContacts()
-        checkWritePermission()
+        showContacts()
+//        if (checkLocationPermission()) showContacts()
+//        checkWritePermission()
 
         val itemTouchHelper = ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
                 override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
@@ -88,7 +96,8 @@ class ContactFragment : Fragment() {
         val mSwipeRefreshLayout = view.findViewById<View>(R.id.swipe_layout) as SwipeRefreshLayout
 
         mSwipeRefreshLayout.setOnRefreshListener {
-            if (checkLocationPermission()) showContacts()
+            Log.d("show", "refresh")
+            showContacts()
             mSwipeRefreshLayout.isRefreshing = false
         }
 
@@ -105,18 +114,18 @@ class ContactFragment : Fragment() {
         )
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        var newName: String? = ""
-        var newNum: String? = ""
-
-        if (requestCode == 1) {
-            if (resultCode == RESULT_OK) {
-                newName = data?.getStringExtra("newName")
-                newNum = data?.getStringExtra("newNum")
-//                iMyService!!.addContact(newName, newNum, uid)
-            }
-        }
-    }
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        var newName: String? = ""
+//        var newNum: String? = ""
+//
+//        if (requestCode == 1) {
+//            if (resultCode == RESULT_OK) {
+//                newName = data?.getStringExtra("newName")
+//                newNum = data?.getStringExtra("newNum")
+////                iMyService!!.addContact(newName, newNum, uid)
+//            }
+//        }
+//    }
 
 
     fun deleteContact(context: Context, contactId: Long) {
@@ -144,67 +153,68 @@ class ContactFragment : Fragment() {
     /***********************************************************/
 
     fun showContacts() {
+        Log.d("show", "sC call")
         // FIXME: getContacts() -> Data from server
         pBooksList = getContacts()
+
         recyclerView.apply {
             adapter = ContactViewAdapter(context, pBooksList)
-            //Log.d(TAG, "permission granted!")
+            //layoutManager = LinearLayoutManager(context)
         }
     }
 
     fun getContacts(): List<PhoneBook> {
         // 데이터베이스 혹은 content resolver 를 통해 가져온 데이터를 적재할 저장소를 먼저 정의
-        val datas: MutableList<PhoneBook> = ArrayList()
+        var data: MutableList<PhoneBook> = ArrayList()
 
-//        // 1. Resolver 가져오기(데이터베이스 열어주기)
-//        // 전화번호부에 이미 만들어져 있는 ContentProvider 를 통해 데이터를 가져올 수 있음
-//        // 다른 앱에 데이터를 제공할 수 있도록 하고 싶으면 ContentProvider 를 설정
-//        // 핸드폰 기본 앱 들 중 데이터가 존재하는 앱들은 Content Provider 를 갖는다
-//        // ContentResolver 는 ContentProvider 를 가져오는 통신 수단
-//        val resolver = requireContext().contentResolver
-//
-//        // 2. 전화번호가 저장되어 있는 테이블 주소값(Uri)을 가져오기
-//        val phoneUri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI
-//
-//        // 3. 테이블에 정의된 칼럼 가져오기
-//        // ContactsContract.CommonDataKinds.Phone 이 경로에 상수로 칼럼이 정의
-//        val projection = arrayOf(
-//            ContactsContract.CommonDataKinds.Phone.CONTACT_ID // 인덱스 값, 중복될 수 있음 -- 한 사람 번호가 여러개인 경우
-//            , ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME
-//            , ContactsContract.CommonDataKinds.Phone.NUMBER
-//        )
-//
-//        // 4. ContentResolver로 쿼리를 날림 -> resolver 가 provider 에게 쿼리하겠다고 요청
-//        val cursor =
-//            resolver.query(phoneUri, projection, null, null, null)
-//
-//        // 4. 커서로 리턴된다. 반복문을 돌면서 cursor 에 담긴 데이터를 하나씩 추출
-//        if (cursor != null) {
-//            while (cursor.moveToNext()) {
-//                // 4.1 이름으로 인덱스를 찾아준다
-//                val idIndex = cursor.getColumnIndex(projection[0]) // 이름을 넣어주면 그 칼럼을 가져와준다.
-//                val nameIndex = cursor.getColumnIndex(projection[1])
-//                val numberIndex = cursor.getColumnIndex(projection[2])
-//                // 4.2 해당 index 를 사용해서 실제 값을 가져온다.
-//                val id = cursor.getString(idIndex)
-//                val name = cursor.getString(nameIndex)
-//                val number = cursor.getString(numberIndex)
-//                val phoneBook = PhoneBook()
-//                phoneBook.id = id
-//                phoneBook.name = name
-//                phoneBook.number = number
-//                Log.d("TAG", "$id, $name, $number")
-//                datas.add(phoneBook)
-//            }
-//        }
-//        // 데이터 계열은 반드시 닫아줘야 한다.
-//        cursor!!.close()
+        val API_URL: String = "http://192.249.19.242:6180/"
+
+        val client = OkHttpClient.Builder()
+            .connectTimeout(1, TimeUnit.MINUTES)
+            .readTimeout(30, TimeUnit.SECONDS)
+            .writeTimeout(30, TimeUnit.SECONDS).build()
+
+        var iMyService: IMyService = Retrofit.Builder().baseUrl(API_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(client).build().create<IMyService>(IMyService::class.java)
+
+            var success : Boolean = true
+            var req: Call<List<PhoneBook>> = iMyService.getAllContacts(app.prefs.id.toString())
+//        Log.d("findUserbyFB", user_id)
+            req.enqueue(object: Callback<List<PhoneBook>> {
+                override fun onResponse(call: Call<List<PhoneBook>>, response: Response<List<PhoneBook>>){
+                    //Log.d("userinfo", response.body().  )
+                    //Log.d("userinfo", response.body()!![1].id)
+                    //data = response.body()
+                    for (i in 1 until response.body()!!.size) {
+//                        var tmpcontact = PhoneBook(
+//                            response.body()!![i].id,
+//                            response.body()!![i].name,
+//                            response.body()!![i].number
+//                        )
+                        var tmpcontact = PhoneBook()
+                        tmpcontact.id = response.body()!![i].id
+                        tmpcontact.name = response.body()!![i].name
+                        tmpcontact.number = response.body()!![i].number
+                        //Log.d("for loop", response.body()!![i].name)
+                        //Log.d("for loop", tmpcontact.name)
+                        data.add(tmpcontact)
+                    }
+
+                    //data = response.body()
+
+                }
+
+                override fun onFailure(call: Call<List<PhoneBook>>, t: Throwable) {
+//                Log.d("userinfo", "fuck")
+                }
+            })
 
         // 이름순으로 정렬한다
-        datas.sortWith(kotlin.Comparator { data1, data2 ->
-            data1.name!!.compareTo(data2.name!!)})
-
-        return datas
+//        datas.sortWith(kotlin.Comparator { data1, data2 ->
+//            data1.name!!.compareTo(data2.name!!)})
+        //Log.d("contact", data.toString())
+        return data
     }
 
     fun writeContact(displayName: String, number: String) {
@@ -269,53 +279,53 @@ class ContactFragment : Fragment() {
     /************ use REQUEST_CODE?  is it necessary? **********/
     /***********************************************************/
 
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        when (requestCode) {
-            1 -> {
-                // If request is cancelled, the result arrays are empty.
-                if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-                    // permission was granted, yay! Do the
-                    // contacts-related task you need to do.
-                    pBooksList = getContacts()
-                    recyclerView.apply {
-                        adapter = ContactViewAdapter(context, pBooksList)
-                        Log.d(ContentValues.TAG, "permission granted!")
-                    }
-                } else {
-                    // permission denied, boo! Disable the
-                    // functionality that depends on this permission.
-                    Log.d(ContentValues.TAG, "permission not granted")
-                }
-                return
-            }
-            2 -> {
-                if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-                    // permission was granted, yay! Do the
-                    // contacts-related task you need to do.
-                    //val newFrag = ContactAdd(this)
-                    //newFrag.setTargetFragment(this, DIALOG_REQUEST_CODE)
-                    //newFrag.show(fragmentManager!!.beginTransaction(), "dialog")
-                    Log.d(ContentValues.TAG, "permission granted!")
-                } else {
-                    // permission denied, boo! Disable the
-                    // functionality that depends on this permission.
-                    Log.d(ContentValues.TAG, "permission not granted")
-                }
-                return
-            }
-            // Add other 'when' lines to check for other
-            // permissions this app might request.
-            else -> {
-                // Ignore all other requests.
-                Log.d(ContentValues.TAG, "some other request")
-            }
-        }
-    }
+//    override fun onRequestPermissionsResult(
+//        requestCode: Int,
+//        permissions: Array<out String>,
+//        grantResults: IntArray
+//    ) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+//        when (requestCode) {
+//            1 -> {
+//                // If request is cancelled, the result arrays are empty.
+//                if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+//                    // permission was granted, yay! Do the
+//                    // contacts-related task you need to do.
+//                    pBooksList = getContacts()
+//                    recyclerView.apply {
+//                        adapter = ContactViewAdapter(context, pBooksList)
+//                        Log.d(ContentValues.TAG, "permission granted!")
+//                    }
+//                } else {
+//                    // permission denied, boo! Disable the
+//                    // functionality that depends on this permission.
+//                    Log.d(ContentValues.TAG, "permission not granted")
+//                }
+//                return
+//            }
+//            2 -> {
+//                if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+//                    // permission was granted, yay! Do the
+//                    // contacts-related task you need to do.
+//                    //val newFrag = ContactAdd(this)
+//                    //newFrag.setTargetFragment(this, DIALOG_REQUEST_CODE)
+//                    //newFrag.show(fragmentManager!!.beginTransaction(), "dialog")
+//                    Log.d(ContentValues.TAG, "permission granted!")
+//                } else {
+//                    // permission denied, boo! Disable the
+//                    // functionality that depends on this permission.
+//                    Log.d(ContentValues.TAG, "permission not granted")
+//                }
+//                return
+//            }
+//            // Add other 'when' lines to check for other
+//            // permissions this app might request.
+//            else -> {
+//                // Ignore all other requests.
+//                Log.d(ContentValues.TAG, "some other request")
+//            }
+//        }
+//    }
 
 //    override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> {
 //        TODO("Not yet implemented")

@@ -9,6 +9,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import com.example.madcamp_week2.ui.main.SectionsPagerAdapter
+import com.example.madcamp_week2.ui.main.contact.PhoneBook
 import com.google.android.material.tabs.TabLayout
 import okhttp3.OkHttpClient
 import retrofit2.Call
@@ -61,8 +62,8 @@ class MainActivity : AppCompatActivity() {
 //        editor.commit()
     }
 
-    fun getAllContacts(uid: Int): List<EntryInfo>{
-        var contact_list: List<EntryInfo> = iMyService.getAllContacts(uid) as List<EntryInfo>
+    fun getAllContacts(fb_id: String): List<PhoneBook>{
+        var contact_list: List<PhoneBook> = iMyService.getAllContacts(fb_id) as List<PhoneBook>
         return contact_list
     }
 

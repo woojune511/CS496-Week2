@@ -13,8 +13,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/phoneList"
-            android:scrollbars="vertical" />
+            android:id="@+id/phoneList" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="56dp"

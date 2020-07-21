@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:layout_width="300dp"
     android:layout_height="200dp"
-    tools:context=".PopupActivity"
+    tools:context="com.example.madcamp_week2.ui"
     android:layout_gravity="center"
     >
 
