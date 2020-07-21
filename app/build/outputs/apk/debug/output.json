@@ -4,22 +4,17 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "com.example.madcamp_week1",
+  "applicationId": "com.example.madcamp_week2",
   "variantName": "debug",
   "elements": [
     {
-      "type": "ONE_OF_MANY",
-      "filters": [
-        {
-          "filterType": "ABI",
-          "value": "x86"
-        }
-      ],
+      "type": "SINGLE",
+      "filters": [],
       "properties": [],
       "versionCode": 1,
       "versionName": "1",
       "enabled": true,
-      "outputFile": "app-x86-debug.apk"
+      "outputFile": "app-debug.apk"
     }
   ]
 }

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.madcamp_week2.LoginActivity"
+    android:id="@+id/activity_login"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/login"
+    >
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <!--            <ImageView-->
+            <!--                android:src="@drawable/login"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="match_parent"-->
+            <!--                android:scaleType="fitXY" />-->
+            <TextView
+                android:id="@+id/txt_create_account"
+                android:text="+ CREATE ACCOUNT"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:layout_margin="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </FrameLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:background="#00FFFFFF"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:padding="16dp">
+
+        <EditText
+            android:id="@+id/edt_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:textColorHint="@color/myTextColor"
+            />
+<!--        app:met_baseColor="@color/myTextColor"-->
+<!--        app:met_primaryColor="@color/myTextColor"-->
+<!--        app:met_iconPadding="0dp"-->
+<!--        app:met_iconRight="@drawable/ic_email"-->
+
+        <EditText
+            android:id="@+id/edt_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:textColorHint="@color/myTextColor"/>
+<!--        <com.rengwuxian.materialedittext.MaterialEditText-->
+
+<!--            app:met_baseColor="@color/myTextColor"-->
+<!--            app:met_primaryColor="@color/myTextColor"-->
+<!--            app:met_iconPadding="0dp"-->
+<!--            app:met_iconRight="@drawable/ic_lock"-->
+<!--            />-->
+
+        <Button
+            android:id="@+id/btn_login"
+            style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="#431F63"
+            android:text="LOGIN"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/btn_facebook_login"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
+
+</LinearLayout>

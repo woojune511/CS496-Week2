@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="300dp"
+    android:layout_height="200dp"
+    tools:context="com.example.madcamp_week2.ui"
+    android:layout_gravity="center"
+    >
+
+    <EditText
+        android:id="@+id/NameInput"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="20dp"
+        app:layout_constraintBottom_toTopOf="@id/NumInput"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:hint="Name"
+        />
+
+    <EditText
+        android:id="@+id/NumInput"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/NameInput"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:hint="Phone Number"
+        />
+
+    <Button
+        android:id="@+id/ConfirmButton"
+        android:layout_height="30dp"
+        android:layout_width="100dp"
+        android:textSize="15dp"
+        android:text="Confirm"
+        android:textAllCaps="false"
+        android:layout_gravity="center"
+        android:background="@drawable/buttonstyle"
+        android:textColor="#FFFFFF"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/CancelButton"
+        app:layout_constraintWidth_max="100dp"
+        app:layout_constraintTop_toBottomOf="@id/NumInput"
+        android:layout_marginTop="20dp"
+        />
+
+    <Button
+        android:id="@+id/CancelButton"
+        android:layout_height="30dp"
+        android:layout_width="100dp"
+        android:textSize="15dp"
+        android:text="Cancel"
+        android:textAllCaps="false"
+        android:layout_gravity="center"
+        android:background="@drawable/buttonstyle"
+        android:textColor="#FFFFFF"
+        app:layout_constraintLeft_toRightOf="@id/ConfirmButton"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintWidth_max="100dp"
+        app:layout_constraintTop_toBottomOf="@id/NumInput"
+        android:layout_marginTop="20dp"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
