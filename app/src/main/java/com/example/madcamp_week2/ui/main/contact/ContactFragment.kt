@@ -1,6 +1,7 @@
 package com.example.madcamp_week2.ui.main.contact
 
 import android.Manifest
+import android.app.Activity.RESULT_OK
 import android.content.*
 import android.content.pm.PackageManager
 import android.os.Bundle
@@ -12,6 +13,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -20,6 +22,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.madcamp_week2.R
+import com.example.madcamp_week2.iMyService
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.functions.Consumer
+import io.reactivex.schedulers.Schedulers
+import retrofit2.Retrofit
+import com.example.madcamp_week2.RetrofitClient
 import java.util.*
 
 class ContactFragment : Fragment() {
@@ -27,12 +36,17 @@ class ContactFragment : Fragment() {
     lateinit var pBooksList: List<PhoneBook>
     val DIALOG_REQUEST_CODE: Int = 1234
     lateinit var addButton: ImageButton
+    var compositeDisposable = CompositeDisposable()
+    var iMyService: iMyService? = null
     private val REQUEST: Int = 0
     private val REQUEST2: Int = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setHasOptionsMenu(true)
+        var retrofit: Retrofit
+        val retrofitClient = RetrofitClient.instance
+
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -81,6 +95,30 @@ class ContactFragment : Fragment() {
         return view
     }
 
+    private fun registerUser(email: String, name: String, password: String) {
+        compositeDisposable.add(iMyService!!.registerUser(email, name, password)!!
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(Consumer<String?> { response ->
+                    Toast.makeText(activity, "" + response, Toast.LENGTH_SHORT).show()
+                })
+        )
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        var newName: String? = ""
+        var newNum: String? = ""
+
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK) {
+                newName = data?.getStringExtra("newName")
+                newNum = data?.getStringExtra("newNum")
+//                iMyService!!.addContact(newName, newNum, uid)
+            }
+        }
+    }
+
+
     fun deleteContact(context: Context, contactId: Long) {
         context.contentResolver.delete(ContactsContract.RawContacts.CONTENT_URI,
             ContactsContract.RawContacts.CONTACT_ID + "=" + contactId, null)
@@ -90,20 +128,6 @@ class ContactFragment : Fragment() {
         val transaction = fragmentManager!!.beginTransaction()
         transaction.detach(this).attach(this).commit()
     }
-
-//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
-//        var newName: String? = ""
-//        var newNum: String? = ""
-//
-//        if (requestCode == 1) {
-//            if (resultCode == RESULT_OK) {
-//                newName = data.getStringExtra("newName")
-//                newNum = data.getStringExtra("newNum")
-//                if (checkWritePermission())
-//                    writeContact(newName!!, newNum!!)
-//            }
-//        }
-//    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -132,49 +156,49 @@ class ContactFragment : Fragment() {
         // 데이터베이스 혹은 content resolver 를 통해 가져온 데이터를 적재할 저장소를 먼저 정의
         val datas: MutableList<PhoneBook> = ArrayList()
 
-        // 1. Resolver 가져오기(데이터베이스 열어주기)
-        // 전화번호부에 이미 만들어져 있는 ContentProvider 를 통해 데이터를 가져올 수 있음
-        // 다른 앱에 데이터를 제공할 수 있도록 하고 싶으면 ContentProvider 를 설정
-        // 핸드폰 기본 앱 들 중 데이터가 존재하는 앱들은 Content Provider 를 갖는다
-        // ContentResolver 는 ContentProvider 를 가져오는 통신 수단
-        val resolver = requireContext().contentResolver
-
-        // 2. 전화번호가 저장되어 있는 테이블 주소값(Uri)을 가져오기
-        val phoneUri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI
-
-        // 3. 테이블에 정의된 칼럼 가져오기
-        // ContactsContract.CommonDataKinds.Phone 이 경로에 상수로 칼럼이 정의
-        val projection = arrayOf(
-            ContactsContract.CommonDataKinds.Phone.CONTACT_ID // 인덱스 값, 중복될 수 있음 -- 한 사람 번호가 여러개인 경우
-            , ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME
-            , ContactsContract.CommonDataKinds.Phone.NUMBER
-        )
-
-        // 4. ContentResolver로 쿼리를 날림 -> resolver 가 provider 에게 쿼리하겠다고 요청
-        val cursor =
-            resolver.query(phoneUri, projection, null, null, null)
-
-        // 4. 커서로 리턴된다. 반복문을 돌면서 cursor 에 담긴 데이터를 하나씩 추출
-        if (cursor != null) {
-            while (cursor.moveToNext()) {
-                // 4.1 이름으로 인덱스를 찾아준다
-                val idIndex = cursor.getColumnIndex(projection[0]) // 이름을 넣어주면 그 칼럼을 가져와준다.
-                val nameIndex = cursor.getColumnIndex(projection[1])
-                val numberIndex = cursor.getColumnIndex(projection[2])
-                // 4.2 해당 index 를 사용해서 실제 값을 가져온다.
-                val id = cursor.getString(idIndex)
-                val name = cursor.getString(nameIndex)
-                val number = cursor.getString(numberIndex)
-                val phoneBook = PhoneBook()
-                phoneBook.id = id
-                phoneBook.name = name
-                phoneBook.number = number
-                Log.d("TAG", "$id, $name, $number")
-                datas.add(phoneBook)
-            }
-        }
-        // 데이터 계열은 반드시 닫아줘야 한다.
-        cursor!!.close()
+//        // 1. Resolver 가져오기(데이터베이스 열어주기)
+//        // 전화번호부에 이미 만들어져 있는 ContentProvider 를 통해 데이터를 가져올 수 있음
+//        // 다른 앱에 데이터를 제공할 수 있도록 하고 싶으면 ContentProvider 를 설정
+//        // 핸드폰 기본 앱 들 중 데이터가 존재하는 앱들은 Content Provider 를 갖는다
+//        // ContentResolver 는 ContentProvider 를 가져오는 통신 수단
+//        val resolver = requireContext().contentResolver
+//
+//        // 2. 전화번호가 저장되어 있는 테이블 주소값(Uri)을 가져오기
+//        val phoneUri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI
+//
+//        // 3. 테이블에 정의된 칼럼 가져오기
+//        // ContactsContract.CommonDataKinds.Phone 이 경로에 상수로 칼럼이 정의
+//        val projection = arrayOf(
+//            ContactsContract.CommonDataKinds.Phone.CONTACT_ID // 인덱스 값, 중복될 수 있음 -- 한 사람 번호가 여러개인 경우
+//            , ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME
+//            , ContactsContract.CommonDataKinds.Phone.NUMBER
+//        )
+//
+//        // 4. ContentResolver로 쿼리를 날림 -> resolver 가 provider 에게 쿼리하겠다고 요청
+//        val cursor =
+//            resolver.query(phoneUri, projection, null, null, null)
+//
+//        // 4. 커서로 리턴된다. 반복문을 돌면서 cursor 에 담긴 데이터를 하나씩 추출
+//        if (cursor != null) {
+//            while (cursor.moveToNext()) {
+//                // 4.1 이름으로 인덱스를 찾아준다
+//                val idIndex = cursor.getColumnIndex(projection[0]) // 이름을 넣어주면 그 칼럼을 가져와준다.
+//                val nameIndex = cursor.getColumnIndex(projection[1])
+//                val numberIndex = cursor.getColumnIndex(projection[2])
+//                // 4.2 해당 index 를 사용해서 실제 값을 가져온다.
+//                val id = cursor.getString(idIndex)
+//                val name = cursor.getString(nameIndex)
+//                val number = cursor.getString(numberIndex)
+//                val phoneBook = PhoneBook()
+//                phoneBook.id = id
+//                phoneBook.name = name
+//                phoneBook.number = number
+//                Log.d("TAG", "$id, $name, $number")
+//                datas.add(phoneBook)
+//            }
+//        }
+//        // 데이터 계열은 반드시 닫아줘야 한다.
+//        cursor!!.close()
 
         // 이름순으로 정렬한다
         datas.sortWith(kotlin.Comparator { data1, data2 ->

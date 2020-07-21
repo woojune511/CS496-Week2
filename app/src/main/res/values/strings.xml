@@ -4,4 +4,5 @@
     <string name="tab_text_2">Gallery</string>
     <string name="tab_text_3">Tab 3</string>
     <color name="gray">#f4f4f4</color>
+    <string name="facebook_app_key">617943582162217</string>
 </resources>

@@ -3,16 +3,17 @@ package com.example.madcamp_week2.ui.main.contact
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
+import android.text.TextUtils
 import android.view.MotionEvent
 import android.view.View
 import android.view.Window
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.madcamp_week2.R
 
-class ContactFAB(val parent : ContactFragment): AppCompatActivity() {
+class ContactFAB(): AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -25,11 +26,22 @@ class ContactFAB(val parent : ContactFragment): AppCompatActivity() {
             val intent = Intent()
             val strName = nameInput.text.toString()
             val strNumber = numInput.text.toString()
-            intent.putExtra("newName", strName)
-            intent.putExtra("newNum", strNumber)
-            setResult(Activity.RESULT_OK, intent)
-            //parent.writeContact(strName, strNumber)
-            finish()
+
+            when {
+                TextUtils.isEmpty(strName) -> {
+                    Toast.makeText(this, "Name cannot be null or empty", Toast.LENGTH_SHORT).show()
+                }
+                TextUtils.isEmpty(strNumber) -> {
+                    Toast.makeText(this, "Number cannot be null or empty", Toast.LENGTH_SHORT).show()
+                }
+                else -> {
+                    intent.putExtra("newName", strName)
+                    intent.putExtra("newNum", strNumber)
+                    setResult(Activity.RESULT_OK, intent)
+                    //parent.writeContact(strName, strNumber)
+                    finish()
+                }
+            }
         }
         cancelButton.setOnClickListener { finish() }
     }
