@@ -40,7 +40,7 @@ import kotlin.reflect.typeOf
 
 class ContactFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
-    lateinit var pBooksList: List<PhoneBook>
+    lateinit var pBooksList: MutableList<PhoneBook>
     val DIALOG_REQUEST_CODE: Int = 1234
     lateinit var addButton: ImageButton
     var compositeDisposable = CompositeDisposable()
@@ -163,7 +163,7 @@ class ContactFragment : Fragment() {
         }
     }
 
-    fun getContacts(): List<PhoneBook> {
+    fun getContacts(): MutableList<PhoneBook> {
         // 데이터베이스 혹은 content resolver 를 통해 가져온 데이터를 적재할 저장소를 먼저 정의
         var data: MutableList<PhoneBook> = ArrayList()
 
@@ -185,24 +185,23 @@ class ContactFragment : Fragment() {
                 override fun onResponse(call: Call<List<PhoneBook>>, response: Response<List<PhoneBook>>){
                     //Log.d("userinfo", response.body().  )
                     //Log.d("userinfo", response.body()!![1].id)
-                    //data = response.body()
-                    for (i in 1 until response.body()!!.size) {
-//                        var tmpcontact = PhoneBook(
-//                            response.body()!![i].id,
-//                            response.body()!![i].name,
-//                            response.body()!![i].number
-//                        )
-                        var tmpcontact = PhoneBook()
-                        tmpcontact.id = response.body()!![i].id
-                        tmpcontact.name = response.body()!![i].name
-                        tmpcontact.number = response.body()!![i].number
-                        //Log.d("for loop", response.body()!![i].name)
-                        //Log.d("for loop", tmpcontact.name)
-                        data.add(tmpcontact)
-                    }
-
-                    //data = response.body()
-
+                    data = response.body() as MutableList<PhoneBook>
+                    Log.d("getAllContacts", response.body().toString())
+//                    for (i in 1 until response.body()!!.size) {
+////                        var tmpcontact = PhoneBook(
+////                            response.body()!![i].id,
+////                            response.body()!![i].name,
+////                            response.body()!![i].number
+////                        )
+//                        var tmpcontact = PhoneBook()
+//                        tmpcontact.id = response.body()!![i].id
+//                        tmpcontact.name = response.body()!![i].name
+//                        tmpcontact.number = response.body()!![i].number
+//                        //Log.d("for loop", response.body()!![i].name)
+//                        //Log.d("for loop", tmpcontact.name)
+//                        data.add(tmpcontact)
+//                    }
+//                    data = response.body()
                 }
 
                 override fun onFailure(call: Call<List<PhoneBook>>, t: Throwable) {

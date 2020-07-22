@@ -12,6 +12,7 @@
     <uses-permission android:name="android.permission.CAMERA" />
 
     <application
+        android:usesCleartextTraffic="true"
         android:name=".app"
         android:allowBackup="true"
         android:icon="@drawable/doome"

@@ -49,6 +49,6 @@ interface IMyService {
     @POST("gallery/upload")
     fun postImage(@Part image: MultipartBody.Part?, @Part("upload") name: RequestBody?, @Part("path") pathName: RequestBody?): Call<ResponseBody?>?
 
-    @GET("imagelist")
-    fun getList(): Call<List<GalleryInfo?>?>?
+    @GET("gallery/allimages")
+    fun getImageList(): Call<List<GalleryInfo>>
 }

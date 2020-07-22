@@ -1,9 +1,17 @@
 package com.example.madcamp_week2.ui.main.gallery
 
 import android.Manifest
+import android.app.Activity
+import android.content.ComponentName
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.database.Cursor
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.Color
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
@@ -12,20 +20,26 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.widget.GridView
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
+import com.example.madcamp_week2.IMyService
 import com.example.madcamp_week2.R
+import com.example.madcamp_week2.UserInfo
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import java.io.File
-import java.io.IOException
+import okhttp3.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import java.io.*
 import java.text.SimpleDateFormat
 import java.util.*
+import java.util.concurrent.TimeUnit
 
 class GalleryFragment : Fragment() {
     var deleteList: List<String> = ArrayList()
@@ -40,9 +54,29 @@ class GalleryFragment : Fragment() {
     var delButton: ImageButton? = null
     var addButton: ImageButton? = null
     var directory_size = 0
+
+    var mBitmap: Bitmap? = null
+    var mFilePath: String? = null
+    var imageView: ImageView? = null
+    var picUri: Uri? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
+
+    val API_URL: String = "http://192.249.19.242:6180/"
+    private val IMAGE_RESULT = 200
+
+    var userinfo: UserInfo? = null
+
+    val client = OkHttpClient.Builder()
+        .connectTimeout(1, TimeUnit.MINUTES)
+        .readTimeout(30, TimeUnit.SECONDS)
+        .writeTimeout(30, TimeUnit.SECONDS).build()
+
+    val iMyService: IMyService = Retrofit.Builder().baseUrl(API_URL)
+        .addConverterFactory(GsonConverterFactory.create())
+        .client(client).build().create<IMyService>(IMyService::class.java)
+
 
     private fun FragmentRefresh() {
         val transaction =
@@ -87,6 +121,176 @@ class GalleryFragment : Fragment() {
             fab_sub1!!.isClickable = true
             fab_sub2!!.isClickable = true
             isFabOpen = true
+        }
+    }
+
+
+    fun getPickImageChooserIntent(): Intent? {
+        // image choosing intent
+        val outputFileUri: Uri = getCaptureImageOutputUri()
+        val allIntents: MutableList<Intent> = ArrayList()
+        val packageManager: PackageManager = context!!.getPackageManager()
+        val captureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        val listCam =
+            packageManager.queryIntentActivities(captureIntent, 0)
+        for (res in listCam) {
+            val intent = Intent(captureIntent)
+            intent.component = ComponentName(res.activityInfo.packageName, res.activityInfo.name)
+            intent.setPackage(res.activityInfo.packageName)
+            if (outputFileUri != null) {
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri)
+            }
+            allIntents.add(intent)
+        }
+        val galleryIntent = Intent(Intent.ACTION_GET_CONTENT)
+        galleryIntent.type = "image/*"
+        val listGallery =
+            packageManager.queryIntentActivities(galleryIntent, 0)
+        for (res in listGallery) {
+            val intent = Intent(galleryIntent)
+            intent.component = ComponentName(res.activityInfo.packageName, res.activityInfo.name)
+            intent.setPackage(res.activityInfo.packageName)
+            allIntents.add(intent)
+        }
+        var mainIntent = allIntents[allIntents.size - 1]
+        for (intent in allIntents) {
+            if (intent.component
+                    !!.className == "com.android.documentsui.DocumentsActivity"
+            ) {
+                mainIntent = intent
+                break
+            }
+        }
+        allIntents.remove(mainIntent)
+        val chooserIntent = Intent.createChooser(mainIntent, "Select source")
+        chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, allIntents.toTypedArray())
+        return chooserIntent
+    }
+
+    private fun getCaptureImageOutputUri(): Uri {
+        var outputFileUri: Uri? = null
+        val getImage: File? = context!!.getExternalFilesDir("")
+        if (getImage != null) {
+            outputFileUri =
+                Uri.fromFile(File(getImage.path, "profile.png"))
+        }
+        return outputFileUri!!
+    }
+
+     override fun onActivityResult(
+        requestCode: Int,
+        resultCode: Int,
+        data: Intent?
+    ) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK) {
+
+            if (requestCode == IMAGE_RESULT) {
+
+                // 보내는 file path
+                mFilePath = getImageFilePath(data)
+                if (mFilePath != null) {
+                    println(mFilePath)
+                    mBitmap = BitmapFactory.decodeFile(mFilePath)
+                }
+            }
+        }
+    }
+
+    private fun getImageFromFilePath(data: Intent?): String? {
+        val isCamera = data == null || data.data == null
+        return if (isCamera) getCaptureImageOutputUri()!!.path else getPathFromURI(data!!.data)
+    }
+
+    fun getImageFilePath(data: Intent?): String? {
+        return getImageFromFilePath(data)
+    }
+
+    private fun getPathFromURI(contentUri: Uri?): String? {
+        val proj = arrayOf(MediaStore.Audio.Media.DATA)
+        val cursor: Cursor =
+            context!!.getContentResolver().query(contentUri!!, proj, null, null, null)!!
+        val column_index = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DATA)
+        cursor.moveToFirst()
+        return cursor.getString(column_index)
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putParcelable("pic_uri", picUri)
+    }
+
+
+
+    private fun showMessageOKCancel(
+        message: String,
+        okListener: DialogInterface.OnClickListener
+    ) {
+        AlertDialog.Builder(requireContext())
+            .setMessage(message)
+            .setPositiveButton("OK", okListener)
+            .setNegativeButton("Cancel", null)
+            .create()
+            .show()
+    }
+
+    private fun canMakeSmores(): Boolean {
+        return Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1
+    }
+
+    private fun multipartImageUpload() {
+        try {
+            val filesDir: File = context!!.getFilesDir()
+            val file = File(filesDir, "image" + ".png")
+            val bos = ByteArrayOutputStream()
+            mBitmap!!.compress(Bitmap.CompressFormat.PNG, 0, bos)
+            val bitmapdata = bos.toByteArray()
+            val fos = FileOutputStream(file)
+            fos.write(bitmapdata)
+            fos.flush()
+            fos.close()
+            val reqFile = RequestBody.create(MediaType.parse("image/*"), file)
+            val body =
+                MultipartBody.Part.createFormData("upload", file.name, reqFile)
+            println("file path : $mFilePath")
+            val pathName: RequestBody =
+                RequestBody.create(MediaType.parse("text/plain"), mFilePath)
+            val name =
+                RequestBody.create(MediaType.parse("text/plain"), "upload")
+
+            // for image upload
+            val req: Call<ResponseBody?>? = iMyService.postImage(body, name, pathName)
+            req?.enqueue(object : Callback<ResponseBody?> {
+                override fun onResponse(
+                    call: Call<ResponseBody?>,
+                    response: Response<ResponseBody?>
+                ) {
+                    if (response.code() == 200 || response.code() == 404) {
+                        textView!!.text = "Uploaded Successfully!"
+                        textView!!.setTextColor(Color.BLUE)
+                    }
+                    Toast.makeText(
+                        context,
+                        response.code().toString() + " ",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+
+                override fun onFailure(
+                    call: Call<ResponseBody?>,
+                    t: Throwable
+                ) {
+                    textView!!.text = "Uploaded Failed!"
+                    textView!!.setTextColor(Color.RED)
+                    Toast.makeText(context, "Request failed", Toast.LENGTH_SHORT)
+                        .show()
+                    t.printStackTrace()
+                }
+            })
+        } catch (e: FileNotFoundException) {
+            e.printStackTrace()
+        } catch (e: IOException) {
+            e.printStackTrace()
         }
     }
 
@@ -164,19 +368,14 @@ class GalleryFragment : Fragment() {
                         val contentUri = Uri.fromFile(f)
                         mediaScanIntent.data = contentUri
                         activity!!.sendBroadcast(mediaScanIntent)
+                        if (mBitmap != null)
+                            multipartImageUpload()
+
                     }
                 }
             }
         }
         return view
-    }
-
-    private fun checkCameraPermission() : Boolean {
-        if(ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(arrayOf(Manifest.permission.CAMERA), 3) //MY_PERMISSIONS_REQUEST_PERMISSION)
-            return false
-        }
-        return true
     }
 
     companion object {
