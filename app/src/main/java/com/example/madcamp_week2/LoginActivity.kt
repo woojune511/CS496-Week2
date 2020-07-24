@@ -2,6 +2,7 @@ package com.example.madcamp_week2
 
 //import android.R
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -20,6 +21,9 @@ import com.example.cs496_week2.LoginCallback
 import com.facebook.*
 import com.facebook.login.LoginResult
 import com.facebook.login.widget.LoginButton
+import com.google.firebase.auth.FacebookAuthProvider
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.ktx.Firebase
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -90,6 +94,7 @@ class LoginActivity : AppCompatActivity() {
             override fun onSuccess(loginResult: LoginResult) {
                 // App code
 //                Log.d("login", "success")
+                var auth: FirebaseAuth = FirebaseAuth.getInstance()
                 var intent: Intent = Intent(applicationContext, MainActivity::class.java)
 
                 // App code
@@ -100,7 +105,7 @@ class LoginActivity : AppCompatActivity() {
                     val email = response.jsonObject.getString("email")
                     val id = response.jsonObject.getString("id")
 //                    val birthday = `object`.getString("birthday") // 01/31/1980 format
-
+                    //intent.putExtra("token", loginResult.accessToken)
 //                    intent.putExtra("user_email", email)
 //                    intent.putExtra("user_id", id)
 
@@ -116,6 +121,13 @@ class LoginActivity : AppCompatActivity() {
 //                    Log.d("pref", id)
 //                    Log.d("pref", app.prefs.id.toString())
                 }
+
+                val credential = FacebookAuthProvider.getCredential(loginResult.accessToken.token)
+                auth.signInWithCredential(credential)
+                    .addOnCompleteListener(Activity()) { task ->
+                        val user = auth.currentUser
+                    }
+
                 val parameters = Bundle()
                 parameters.putString("fields", "id,name,email,gender,birthday")
                 request.parameters = parameters
@@ -138,6 +150,7 @@ class LoginActivity : AppCompatActivity() {
 
             // 앱 켰을 때 로그인 되어 있는 상태면 바로 mainactivity로 넘어가게 하기
         })
+
 
 
 /*
@@ -189,6 +202,8 @@ class LoginActivity : AppCompatActivity() {
 
 //        btn_facebook_login!!.registerCallback(mCallbackManager, mLoginCallback)
     }
+
+
 
     private fun loginUser(email: String, password: String) {
         if (TextUtils.isEmpty(email)) {

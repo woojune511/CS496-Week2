@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "24065121889",
+    "firebase_url": "https://chatting-practice-madcamp.firebaseio.com",
+    "project_id": "chatting-practice-madcamp",
+    "storage_bucket": "chatting-practice-madcamp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:24065121889:android:b18208249b1e54346d5420",
+        "android_client_info": {
+          "package_name": "com.google.firebase.codelab.friendlychat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "24065121889-56gilutdj34fupt9gj0rb7vo4qlevube.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.google.firebase.codelab.friendlychat",
+            "certificate_hash": "5c9e163c0a3f0443183e4f4a46180787bb655e27"
+          }
+        },
+        {
+          "client_id": "24065121889-ije3cjptm7knkl4btoovaou1ktfo5vhl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCy8ohO8QvI9zN68y8gNfglivylFgyLIdg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "24065121889-ije3cjptm7knkl4btoovaou1ktfo5vhl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

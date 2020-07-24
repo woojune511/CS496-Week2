@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "applicationId": "com.example.madcamp_week2",
+  "applicationId": "com.google.firebase.codelab.friendlychat",
   "variantType": "BASE_APK",
   "elements": [
     {
@@ -19,9 +19,9 @@
       },
       "path": "AndroidManifest.xml",
       "properties": {
-        "packageId": "com.example.madcamp_week2",
+        "packageId": "com.google.firebase.codelab.friendlychat",
         "split": "",
-        "minSdkVersion": "16"
+        "minSdkVersion": "21"
       }
     }
   ]

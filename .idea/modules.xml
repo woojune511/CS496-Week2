@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/AndroidStudioProjects-CS496-Week2-madcamp_week2.iml" filepath="$PROJECT_DIR$/.idea/modules/AndroidStudioProjects-CS496-Week2-madcamp_week2.iml" group="madcamp_week2" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/CS496-Week2-madcamp_week2.iml" filepath="$PROJECT_DIR$/.idea/modules/CS496-Week2-madcamp_week2.iml" group="madcamp_week2" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="madcamp_week2/app" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/madcamp_week2.iml" filepath="$PROJECT_DIR$/.idea/modules/madcamp_week2.iml" group="madcamp_week2" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/madcamp_week2-app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/madcamp_week2-app.iml" group="madcamp_week2/app" />
     </modules>
   </component>
 </project>

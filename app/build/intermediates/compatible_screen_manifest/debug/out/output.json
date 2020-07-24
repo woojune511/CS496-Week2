@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "applicationId": "com.example.madcamp_week2",
+  "applicationId": "com.google.firebase.codelab.friendlychat",
   "variantType": "BASE_APK",
   "elements": []
 }

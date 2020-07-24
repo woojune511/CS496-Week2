@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.example.madcamp_week2.R
+import com.example.madcamp_week2.ui.main.chatting.getTokenCheck
 import com.example.madcamp_week2.ui.main.contact.ContactFragment
 import com.example.madcamp_week2.ui.main.gallery.GalleryFragment
 
@@ -35,7 +36,7 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager)
             0 -> ContactFragment()
             //1 -> ContactFragment()
             1 -> GalleryFragment()
-            //2 -> ThirdFragment()
+            2 -> getTokenCheck()
             else -> Fragment()
         }
     }
@@ -55,6 +56,6 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager)
 
     override fun getCount(): Int {
         // Show 2 total pages.
-        return 2
+        return 3
     }
 }

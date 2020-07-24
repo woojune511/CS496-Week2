@@ -75,9 +75,9 @@ class ContactFragment : Fragment() {
             startActivityForResult(intent, 1)
         }
 
-        showContacts()
-//        if (checkLocationPermission()) showContacts()
-//        checkWritePermission()
+        //showContacts()
+        if (checkLocationPermission()) showContacts()
+        checkWritePermission()
 
         val itemTouchHelper = ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
                 override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
@@ -159,62 +159,107 @@ class ContactFragment : Fragment() {
 
         recyclerView.apply {
             adapter = ContactViewAdapter(context, pBooksList)
-            //layoutManager = LinearLayoutManager(context)
+            layoutManager = LinearLayoutManager(context)
         }
     }
 
     fun getContacts(): List<PhoneBook> {
         // 데이터베이스 혹은 content resolver 를 통해 가져온 데이터를 적재할 저장소를 먼저 정의
-        var data: MutableList<PhoneBook> = ArrayList()
+//        var data: MutableList<PhoneBook> = ArrayList()
+//
+//        val API_URL: String = "http://192.249.19.242:6180/"
+//
+//        val client = OkHttpClient.Builder()
+//            .connectTimeout(1, TimeUnit.MINUTES)
+//            .readTimeout(30, TimeUnit.SECONDS)
+//            .writeTimeout(30, TimeUnit.SECONDS).build()
+//
+//        var iMyService: IMyService = Retrofit.Builder().baseUrl(API_URL)
+//            .addConverterFactory(GsonConverterFactory.create())
+//            .client(client).build().create<IMyService>(IMyService::class.java)
+//
+//            var success : Boolean = true
+//            var req: Call<List<PhoneBook>> = iMyService.getAllContacts(app.prefs.id.toString())
+////        Log.d("findUserbyFB", user_id)
+//            req.enqueue(object: Callback<List<PhoneBook>> {
+//                override fun onResponse(call: Call<List<PhoneBook>>, response: Response<List<PhoneBook>>){
+//                    //Log.d("userinfo", response.body().  )
+//                    //Log.d("userinfo", response.body()!![1].id)
+//                    //data = response.body()
+//                    for (i in 1 until response.body()!!.size) {
+////                        var tmpcontact = PhoneBook(
+////                            response.body()!![i].id,
+////                            response.body()!![i].name,
+////                            response.body()!![i].number
+////                        )
+//                        var tmpcontact = PhoneBook()
+//                        tmpcontact.id = response.body()!![i].id
+//                        tmpcontact.name = response.body()!![i].name
+//                        tmpcontact.number = response.body()!![i].number
+//                        //Log.d("for loop", response.body()!![i].name)
+//                        //Log.d("for loop", tmpcontact.name)
+//                        data.add(tmpcontact)
+//                    }
+//
+//                    //data = response.body()
+//
+//                }
+//
+//                override fun onFailure(call: Call<List<PhoneBook>>, t: Throwable) {
+////                Log.d("userinfo", "fuck")
+//                }
+//            })
+        val datas: MutableList<PhoneBook> = ArrayList()
 
-        val API_URL: String = "http://192.249.19.242:6180/"
+        // 1. Resolver 가져오기(데이터베이스 열어주기)
+        // 전화번호부에 이미 만들어져 있는 ContentProvider 를 통해 데이터를 가져올 수 있음
+        // 다른 앱에 데이터를 제공할 수 있도록 하고 싶으면 ContentProvider 를 설정
+        // 핸드폰 기본 앱 들 중 데이터가 존재하는 앱들은 Content Provider 를 갖는다
+        // ContentResolver 는 ContentProvider 를 가져오는 통신 수단
+        val resolver = requireContext().contentResolver
 
-        val client = OkHttpClient.Builder()
-            .connectTimeout(1, TimeUnit.MINUTES)
-            .readTimeout(30, TimeUnit.SECONDS)
-            .writeTimeout(30, TimeUnit.SECONDS).build()
+        // 2. 전화번호가 저장되어 있는 테이블 주소값(Uri)을 가져오기
+        val phoneUri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI
 
-        var iMyService: IMyService = Retrofit.Builder().baseUrl(API_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .client(client).build().create<IMyService>(IMyService::class.java)
+        // 3. 테이블에 정의된 칼럼 가져오기
+        // ContactsContract.CommonDataKinds.Phone 이 경로에 상수로 칼럼이 정의
+        val projection = arrayOf(
+            ContactsContract.CommonDataKinds.Phone.CONTACT_ID // 인덱스 값, 중복될 수 있음 -- 한 사람 번호가 여러개인 경우
+            , ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME
+            , ContactsContract.CommonDataKinds.Phone.NUMBER
+        )
 
-            var success : Boolean = true
-            var req: Call<List<PhoneBook>> = iMyService.getAllContacts(app.prefs.id.toString())
-//        Log.d("findUserbyFB", user_id)
-            req.enqueue(object: Callback<List<PhoneBook>> {
-                override fun onResponse(call: Call<List<PhoneBook>>, response: Response<List<PhoneBook>>){
-                    //Log.d("userinfo", response.body().  )
-                    //Log.d("userinfo", response.body()!![1].id)
-                    //data = response.body()
-                    for (i in 1 until response.body()!!.size) {
-//                        var tmpcontact = PhoneBook(
-//                            response.body()!![i].id,
-//                            response.body()!![i].name,
-//                            response.body()!![i].number
-//                        )
-                        var tmpcontact = PhoneBook()
-                        tmpcontact.id = response.body()!![i].id
-                        tmpcontact.name = response.body()!![i].name
-                        tmpcontact.number = response.body()!![i].number
-                        //Log.d("for loop", response.body()!![i].name)
-                        //Log.d("for loop", tmpcontact.name)
-                        data.add(tmpcontact)
-                    }
+        // 4. ContentResolver로 쿼리를 날림 -> resolver 가 provider 에게 쿼리하겠다고 요청
+        val cursor =
+            resolver.query(phoneUri, projection, null, null, null)
 
-                    //data = response.body()
-
-                }
-
-                override fun onFailure(call: Call<List<PhoneBook>>, t: Throwable) {
-//                Log.d("userinfo", "fuck")
-                }
-            })
+        // 4. 커서로 리턴된다. 반복문을 돌면서 cursor 에 담긴 데이터를 하나씩 추출
+        if (cursor != null) {
+            while (cursor.moveToNext()) {
+                // 4.1 이름으로 인덱스를 찾아준다
+                val idIndex = cursor.getColumnIndex(projection[0]) // 이름을 넣어주면 그 칼럼을 가져와준다.
+                val nameIndex = cursor.getColumnIndex(projection[1])
+                val numberIndex = cursor.getColumnIndex(projection[2])
+                // 4.2 해당 index 를 사용해서 실제 값을 가져온다.
+                val id = cursor.getString(idIndex)
+                val name = cursor.getString(nameIndex)
+                val number = cursor.getString(numberIndex)
+                val phoneBook = PhoneBook()
+                phoneBook.id = id
+                phoneBook.name = name
+                phoneBook.number = number
+                Log.d("TAG", "$id, $name, $number")
+                datas.add(phoneBook)
+            }
+        }
+        // 데이터 계열은 반드시 닫아줘야 한다.
+        cursor!!.close()
 
         // 이름순으로 정렬한다
 //        datas.sortWith(kotlin.Comparator { data1, data2 ->
 //            data1.name!!.compareTo(data2.name!!)})
         //Log.d("contact", data.toString())
-        return data
+        return datas
     }
 
     fun writeContact(displayName: String, number: String) {
